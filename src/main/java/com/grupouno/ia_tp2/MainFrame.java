@@ -7,16 +7,10 @@ package com.grupouno.ia_tp2;
 
 import com.sun.glass.events.KeyEvent;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Random;
 import java.util.StringTokenizer;
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextPane;
-import javax.swing.text.DefaultStyledDocument;
-import javax.swing.text.StyledDocument;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -180,75 +174,40 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void sendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendButtonActionPerformed
-    
+
         if (this.inputArea.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "¡No puedes enviar mensajes vacíos!");
             this.inputArea.setText("");
-        }
-        else {
-            send(); 
+        } else {
+            send();
         }
     }//GEN-LAST:event_sendButtonActionPerformed
 
     private void send() {
         String input = this.inputArea.getText();
         this.inputArea.setText("");
-
-        detectarCaracteristicas(input);
-        actualizarSugeridos();
         escribirUsuario(input);
+        if (asistente.getPreguntaSiNo() != null) {
+            detectarRespuestaSiNo(input);
+        } else {
+            detectarCaracteristicas(input);
+        }
+        actualizarSugeridos();
         responder(input);
     }
 
     private void inputAreaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputAreaKeyTyped
         if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
-            
+
             if (this.inputArea.getText().length() == 1) {
                 JOptionPane.showMessageDialog(null, "¡No puedes enviar mensajes vacíos!");
                 this.inputArea.setText("");
-            }
-            else {
-                send(); 
+            } else {
+                send();
             }
 
         }
     }//GEN-LAST:event_inputAreaKeyTyped
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainFrame().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea detectadasArea;
     private javax.swing.JLabel detectadasAreaLabel;
@@ -334,5 +293,40 @@ public class MainFrame extends javax.swing.JFrame {
         text += respuesta;
         this.outputArea.setText(text);
         this.outputArea.setForeground(Color.black);
+    }
+
+    private void detectarRespuestaSiNo(String input) {
+        StringTokenizer tokenizer = new StringTokenizer(input);
+        while (tokenizer.hasMoreTokens()) {
+            String token = tokenizer.nextToken();
+            //Se pasa el token y se compara con el listado y sus sinonimos
+            token = asistente.esSiNo(token);
+            if (token != null) {
+                //Si está presente, se escribe en Title Case en la lista de 
+                //requerimientos
+                ArrayList<String> resultados;
+                if ("si".equals(token)) {
+                    resultados = asistente.getPreguntaSiNo().getIfSi();
+                } else {
+                    resultados = asistente.getPreguntaSiNo().getIfNo();
+                }
+                setCaracteristicasSiNo(resultados);
+            }
+        }
+    }
+
+    private void setCaracteristicasSiNo(ArrayList<String> resultados) {
+        for (String resultado : resultados) {
+            resultado = StringUtils.capitalize(resultado);
+            String text = this.detectadasArea.getText();
+            if (text.isEmpty()) {
+                this.detectadasArea.setText(resultado);
+            } else {
+                if (!text.contains(resultado)) {
+                    text += "\n" + resultado;
+                    this.detectadasArea.setText(text);
+                }
+            }
+        }
     }
 }

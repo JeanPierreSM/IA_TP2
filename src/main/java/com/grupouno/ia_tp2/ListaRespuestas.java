@@ -21,7 +21,7 @@ class ListaRespuestas {
         this.lista = new ArrayList<>();
         //Sección Cliente - Notebook
 
-        Respuesta r = new Respuesta("¿Está buscando un producto de gama básica, media o premium?");
+        Respuesta r = new PreguntaSiNo("¿Está buscando un producto de gama básica, media o premium?");
         r.setPalabrasClave(new ArrayList<String>() {
             {
                 add("buscar");
@@ -82,7 +82,7 @@ class ListaRespuestas {
         );
         lista.add(r);
 
-        r = new Respuesta("¿Necesita un ordenador que salió recientemente en el mercado?");
+        PreguntaSiNo p = new PreguntaSiNo("¿Necesita un ordenador que salió recientemente en el mercado?");
         r.setPalabrasClave(new ArrayList<String>() {
             {
                 add("pantalla");
@@ -93,7 +93,22 @@ class ListaRespuestas {
             }
         }
         );
-        lista.add(r);
+        p.setIfSi(new ArrayList<String>() {
+            {
+                add("reciente");
+                add("ultimo");
+                add("nuevo");
+            }
+        }
+        );
+        p.setIfNo(new ArrayList<String>() {
+            {
+                add("viejo");
+                add("economizar");
+            }
+        }
+        );
+        lista.add(p);
 
         r = new Respuesta("¿Realiza trabajos de edición de imagenes/video?");
         r.setPalabrasClave(new ArrayList<String>() {

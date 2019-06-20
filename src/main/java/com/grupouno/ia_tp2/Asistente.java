@@ -27,22 +27,23 @@ public class Asistente {
     private ListaProductos listaProductos;
     private ListaRespuestas listaResp;
     private LogFrame log;
+    private PreguntaSiNo preguntaSiNo;
 
     public Asistente() {
-        
+
         this.MTCaracteristicas = new ArrayList<>();
         this.procesadorTokens = new ProcesadorTokens();
         this.listaProductos = new ListaProductos();
         this.listaResp = new ListaRespuestas();
         this.log = new LogFrame();
-        
-        
+        this.preguntaSiNo = null;
+
         log.setTitle("Logs");
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice defaultScreen = ge.getDefaultScreenDevice();
         Rectangle rect = defaultScreen.getDefaultConfiguration().getBounds();
         int x = 0;
-        int y = (int) (rect.getMaxY()/2 - log.getHeight()/2);
+        int y = (int) (rect.getMaxY() / 2 - log.getHeight() / 2);
         log.setLocation(x, y);
         log.setVisible(true);
     }
@@ -97,19 +98,15 @@ public class Asistente {
     boolean esPalabraConversacion(String token) {
         token = procesadorTokens.procesar(token);
         boolean b = procesadorTokens.esPalabraConversacion(token);
-        if (b) {
-            return true;
-        } else {
-            return false;
-        }
+        return b;
     }
 
-    ArrayList<String> getConversaciones(ArrayList<String> palabrasConver) {
-        ArrayList<String> result = new ArrayList<>();
+    ArrayList<Respuesta> getConversaciones(ArrayList<String> palabrasConver) {
+        ArrayList<Respuesta> result = new ArrayList<>();
         if (!palabrasConver.isEmpty()) {
             for (Integer i = 0; i < listaResp.getLista().size(); i++) {
-                if (listaResp.getLista().get(i).getPalabrasClave().containsAll(palabrasConver)){
-                    result.add(listaResp.getLista().get(i).getOracion());
+                if (listaResp.getLista().get(i).getPalabrasClave().containsAll(palabrasConver)) {
+                    result.add(listaResp.getLista().get(i));
                 }
             }
         }
@@ -132,14 +129,33 @@ public class Asistente {
                 palabrasConver.add(token);
             }
         }
-        String respuesta;
-        ArrayList<String> oraciones = getConversaciones(palabrasConver);
-        if (oraciones.isEmpty()) {
-            respuesta = getRespuestaGenerica();
+        Respuesta respuesta;
+        ArrayList<Respuesta> respuestas = getConversaciones(palabrasConver);
+        if (respuestas.isEmpty()) {
+            preguntaSiNo = null;
+            return getRespuestaGenerica();
         } else {
-            Integer i = new Random().nextInt(oraciones.size());
-            respuesta = oraciones.get(i);
+            Integer i = new Random().nextInt(respuestas.size());
+            respuesta = respuestas.get(i);
+            if (respuesta.getClass().equals(PreguntaSiNo.class)) {
+                preguntaSiNo = (PreguntaSiNo) respuesta;
+            } else {
+                preguntaSiNo = null;
+            }
         }
-        return respuesta;
+        return respuesta.getOracion();
+    }
+
+    public PreguntaSiNo getPreguntaSiNo() {
+        return preguntaSiNo;
+    }
+
+    String esSiNo(String token) {
+        token = procesadorTokens.procesar(token);
+        if (token.equals("si") || token.equals("no")) {
+            return token;
+        } else {
+            return null;
+        }
     }
 }
