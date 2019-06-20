@@ -18,6 +18,33 @@ class PalabrasConversacion {
     
     public PalabrasConversacion() {
         listado = new ArrayList<>();
-        listado.add("hola");
+        
+        //Seccion Cliente - Notebook
+        listado.add("buscar");
+        listado.add("notebook");
+        listado.add("comprar");
+        listado.add("necesitar");
+        listado.add("baja");
+        listado.add("basica");
+        listado.add("media");
+        listado.add("alta");
+        listado.add("pantalla");
+        listado.add("grande");
+        listado.add("notebook");
+        listado.add("ultimo");
+        listado.add("modelo");
+        listado.add("portable");
+        listado.add("pequeña");
+        listado.add("reciente");
+        listado.add("buscar");
+        listado.add("nuevo");
+        listado.add("economizar");
+        listado.add("viejo");
+        listado.add("editar");
+        listado.add("edicion");
+        listado.add("mucho");
+        listado.add("almacenamiento");
+        listado.add("querer");
+        listado.add("ssd");
     }
 }

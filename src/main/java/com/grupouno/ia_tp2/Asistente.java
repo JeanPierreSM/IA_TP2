@@ -108,10 +108,7 @@ public class Asistente {
         ArrayList<String> result = new ArrayList<>();
         if (!palabrasConver.isEmpty()) {
             for (Integer i = 0; i < listaResp.getLista().size(); i++) {
-                ArrayList<String> ar1 = listaResp.getLista().get(i).getPalabrasClave();
-                Collections.sort(ar1);
-                Collections.sort(palabrasConver);
-                if (ar1.equals(palabrasConver)) {
+                if (listaResp.getLista().get(i).getPalabrasClave().containsAll(palabrasConver)){
                     result.add(listaResp.getLista().get(i).getOracion());
                 }
             }
