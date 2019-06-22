@@ -189,11 +189,12 @@ public class MainFrame extends javax.swing.JFrame {
         escribirUsuario(input);
         if (asistente.getPreguntaSiNo() != null) {
             detectarRespuestaSiNo(input);
+            mostrarPreguntaSiguiente();
         } else {
-            detectarPalabrasClave(input);
+            detectarPalabrasClaveProducto(input);
+            responder(input);
         }
         actualizarSugeridos();
-        responder(input);
     }
 
     private void inputAreaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputAreaKeyTyped
@@ -249,13 +250,13 @@ public class MainFrame extends javax.swing.JFrame {
         escribirAgente(respuesta);
     }
 
-    private void detectarPalabrasClave(String input) {
+    private void detectarPalabrasClaveProducto(String input) {
         StringTokenizer tokenizer = new StringTokenizer(input);
 
         while (tokenizer.hasMoreTokens()) {
             String token = tokenizer.nextToken();
             //Se pasa el token y se compara con el listado y sus sinonimos
-            token = asistente.esPalabraClave(token);
+            token = asistente.esPalabraClaveProducto(token);
             if (token != null) {
                 //Si está presente, se escribe en Title Case en la lista de 
                 //requerimientos
@@ -310,7 +311,9 @@ public class MainFrame extends javax.swing.JFrame {
                 } else {
                     resultados = asistente.getPreguntaSiNo().getIfNo();
                 }
-                setCaracteristicasSiNo(resultados);
+                if(resultados != null){
+                    setCaracteristicasSiNo(resultados);
+                }
             }
         }
     }
@@ -328,5 +331,10 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             }
         }
+    }
+
+    private void mostrarPreguntaSiguiente() {
+        Regla preg = this.asistente.getSiguiente();
+        escribirAgente(preg.getConsecuente());
     }
 }

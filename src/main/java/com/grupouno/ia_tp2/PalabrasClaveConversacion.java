@@ -24,10 +24,9 @@ class PalabrasClaveConversacion {
         listado.add("notebook");
         listado.add("comprar");
         listado.add("necesitar");
-        listado.add("baja");
-        listado.add("basica");
-        listado.add("media");
-        listado.add("alta");
+        listado.add("gamma baja");
+        listado.add("gamma media");
+        listado.add("gamma alta");
         listado.add("pantalla");
         listado.add("grande");
         listado.add("notebook");

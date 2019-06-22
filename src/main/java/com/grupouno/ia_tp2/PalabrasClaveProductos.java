@@ -15,7 +15,6 @@ import java.util.HashMap;
 public class PalabrasClaveProductos {
     
     public static ArrayList<String> listado;
-    public HashMap<String, String> sinonimos;
 
     public PalabrasClaveProductos() {
         listado = new ArrayList<>();
@@ -37,19 +36,6 @@ public class PalabrasClaveProductos {
         listado.add("gamma media");
         listado.add("gamma baja");
         listado.add("gamma alta");
-        
-        
-        sinonimos = new HashMap<>();
-        sinonimos.put("telefono", "smartphone");
-        sinonimos.put("celular", "smartphone");
-        sinonimos.put("cel", "smartphone");
-        sinonimos.put("pequeño", "portable");
-        sinonimos.put("chico", "portable");
-        sinonimos.put("full", "fhd");
-        sinonimos.put("fullhd", "fhd");
-        sinonimos.put("baja", "gamma baja");
-        sinonimos.put("alta", "gamma alta");
-        sinonimos.put("media", "gamma media");
     }
     
 }

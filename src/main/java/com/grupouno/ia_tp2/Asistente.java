@@ -21,6 +21,7 @@ import org.apache.commons.lang3.StringUtils;
 public class Asistente {
 
     private ArrayList<String> MTCaracteristicas;
+    private ArrayList<String> MTConversacion;
     private ProcesadorTokens procesadorTokens;
     private ReglasProductos listaProductos;
     private ReglasRespuestas listaReglasResp;
@@ -31,6 +32,7 @@ public class Asistente {
     public Asistente() {
 
         this.MTCaracteristicas = new ArrayList<>();
+        this.MTConversacion = new ArrayList<>();
         this.procesadorTokens = new ProcesadorTokens();
         this.listaProductos = new ReglasProductos();
         this.listaReglasResp = new ReglasRespuestas();
@@ -52,10 +54,10 @@ public class Asistente {
         this.MTCaracteristicas.add(s);
     }
 
-    String esPalabraClave(String token) {
+    String esPalabraClaveProducto(String token) {
         token = procesadorTokens.procesar(token);
-        boolean b = procesadorTokens.esPalabraClave(token);
-        //Si es palabra clave se agrega a la MTCaracteristicas
+        boolean b = procesadorTokens.esPalabraClaveProducto(token);
+        //Si es palabra clave de producto se agrega a la MTCaracteristicas
         if (b) {
             addCaracteristica(token);
             return token;
@@ -73,11 +75,11 @@ public class Asistente {
                 }
             }
         }
-        log(result);
+        logReglasProductos(result);
         return result;
     }
 
-    void log(ArrayList<Regla> sugeridos) {
+    private void logReglasProductos(ArrayList<Regla> sugeridos) {
         String reglas = "";
         for (int i = 0; i < sugeridos.size(); i++) {
             if (i != 0) {
@@ -92,13 +94,19 @@ public class Asistente {
             }
             reglas += "⇒ " + StringUtils.capitalize(sugeridos.get(i).getConsecuente());
         }
-        log.getLogArea().setText(reglas);
+        log.getLogProductosArea().setText(reglas);
     }
 
-    boolean esPalabraConversacion(String token) {
+    String esPalabraConversacion(String token) {
         token = procesadorTokens.procesar(token);
         boolean b = procesadorTokens.esPalabraConversacion(token);
-        return b;
+        //Si es palabra clave de conversacion se agrega a la MTConversacion
+        if (b) {
+            addConversacion(token);
+            return token;
+        } else {
+            return null;
+        }
     }
 
     ArrayList<Regla> getConversaciones(ArrayList<String> palabrasConver) {
@@ -116,9 +124,9 @@ public class Asistente {
         return result;
     }
 
-    String getRespuestaGenerica() {
+    Regla getRespuestaGenerica() {
         Integer i = new Random().nextInt(listaReglasResp.getGenericas().size());
-        String respuesta = listaReglasResp.getGenericas().get(i).getConsecuente();
+        Regla respuesta = listaReglasResp.getGenericas().get(i);
         return respuesta;
     }
 
@@ -128,33 +136,15 @@ public class Asistente {
         while (tokenizer.hasMoreTokens()) {
             String token = tokenizer.nextToken();
             //Se pasa el token y se compara con el listado de conversación
-            if (esPalabraConversacion(token)) {
+            token = esPalabraConversacion(token);
+            if (token != null) {
                 palabrasConver.add(token);
             }
         }
         Regla respuesta;
         ArrayList<Regla> respuestas = getConversaciones(palabrasConver);
+        respuesta = getReglaPorCriterios(respuestas);
 
-        //2. CRITERIO: NO DUPLICIDAD
-        respuestas.removeAll(aplicadas);
-        if (respuestas.isEmpty()) {
-            preguntaSiNo = null;
-            return getRespuestaGenerica();
-        } else {
-
-            //3. CRITERIO: PRIORIDAD
-            respuestas = getPrioridadMasAlta(respuestas);
-
-            //4. CRITERIO: ALEATOREIDAD
-            Integer i = new Random().nextInt(respuestas.size());
-            respuesta = respuestas.get(i);
-            aplicadas.add(respuesta);
-            if (respuesta.getClass().equals(PreguntaSiNo.class)) {
-                preguntaSiNo = (PreguntaSiNo) respuesta;
-            } else {
-                preguntaSiNo = null;
-            }
-        }
         return respuesta.getConsecuente();
     }
 
@@ -176,14 +166,78 @@ public class Asistente {
         Prioridad max = Prioridad.BAJA;
         for (int i = 0; i < respuestas.size(); i++) {
             Prioridad aux = respuestas.get(i).getPrioridad();
-            if(aux == Prioridad.ALTA) max = Prioridad.ALTA;
-            else{
-                if(aux == Prioridad.MEDIA && max == Prioridad.BAJA) max = Prioridad.MEDIA;
+            if (aux == Prioridad.ALTA) {
+                max = Prioridad.ALTA;
+            } else {
+                if (aux == Prioridad.MEDIA && max == Prioridad.BAJA) {
+                    max = Prioridad.MEDIA;
+                }
             }
         }
-        for(int i = 0; i < respuestas.size(); i++){
-            if(respuestas.get(i).getPrioridad() == max) result.add(respuestas.get(i));
+        for (int i = 0; i < respuestas.size(); i++) {
+            if (respuestas.get(i).getPrioridad() == max) {
+                result.add(respuestas.get(i));
+            }
         }
         return result;
+    }
+
+    Regla getSiguiente() {
+        ArrayList<Regla> reglas = this.getPreguntaSiNo().getSiguientes();
+        Regla r = getReglaPorCriterios(reglas);
+        if (r.getClass().equals(PreguntaSiNo.class)) {
+            this.preguntaSiNo = (PreguntaSiNo) r;
+        } else {
+            this.preguntaSiNo = null;
+        }
+        return r;
+    }
+
+    private Regla getReglaPorCriterios(ArrayList<Regla> reglas) {
+        ArrayList<Regla> respuestas = reglas;
+        Regla respuesta;
+
+        //2. CRITERIO: NO DUPLICIDAD
+        respuestas.removeAll(aplicadas);
+        if (respuestas.isEmpty()) {
+            preguntaSiNo = null;
+            return getRespuestaGenerica();
+        } else {
+
+            //3. CRITERIO: PRIORIDAD
+            respuestas = getPrioridadMasAlta(respuestas);
+
+            //4. CRITERIO: ALEATOREIDAD
+            Integer i = new Random().nextInt(respuestas.size());
+            respuesta = respuestas.get(i);
+            aplicadas.add(respuesta);
+            if (respuesta.getClass().equals(PreguntaSiNo.class)) {
+                preguntaSiNo = (PreguntaSiNo) respuesta;
+            } else {
+                preguntaSiNo = null;
+            }
+        }
+        logReglaConversacion(respuesta);
+        return respuesta;
+    }
+
+    private void logReglaConversacion(Regla respuesta) {
+        String reglas = log.getLogConversacionArea().getText();
+        if (!"".equals(reglas)) {
+            reglas += '\n';
+        }
+        reglas += " > ";
+        for (Integer j = 0; j < MTConversacion.size(); j++) {
+            if (j != 0) {
+                reglas += "∧ ";
+            }
+            reglas += StringUtils.capitalize(MTConversacion.get(j)) + "() ";
+        }
+        reglas += "⇒ " + StringUtils.capitalize(respuesta.getConsecuente());
+        log.getLogConversacionArea().setText(reglas);
+    }
+
+    private void addConversacion(String token) {
+        MTConversacion.add(token);
     }
 }

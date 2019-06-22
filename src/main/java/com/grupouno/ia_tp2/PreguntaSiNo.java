@@ -15,11 +15,19 @@ public class PreguntaSiNo extends Regla {
     
     public ArrayList<String> ifSi;
     public ArrayList<String> ifNo;
+    public ArrayList<Regla> siguientes;
     
     
     public PreguntaSiNo(String oracion) {
         super(oracion);
+        this.ifNo = new ArrayList<>();
     }
+    
+    public PreguntaSiNo(String oracion, Prioridad prioridad) {
+        super(oracion, prioridad);
+        this.ifNo = new ArrayList<>();
+    }
+    
 
     public ArrayList<String> getIfSi() {
         return ifSi;
@@ -36,6 +44,15 @@ public class PreguntaSiNo extends Regla {
     public void setIfNo(ArrayList<String> ifNo) {
         this.ifNo = ifNo;
     }
+
+    public ArrayList<Regla> getSiguientes() {
+        return siguientes;
+    }
+
+    public void setSiguientes(ArrayList<Regla> siguiente) {
+        this.siguientes = siguiente;
+    }
+    
     
     
     

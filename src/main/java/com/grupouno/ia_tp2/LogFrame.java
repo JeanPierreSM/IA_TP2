@@ -19,8 +19,12 @@ public class LogFrame extends javax.swing.JFrame {
         initComponents();
     }
 
-    public JTextArea getLogArea() {
-        return logArea;
+    public JTextArea getLogProductosArea() {
+        return logProductosArea;
+    }
+
+    public JTextArea getLogConversacionArea() {
+        return logConversacionArea;
     }
 
     /**
@@ -33,15 +37,24 @@ public class LogFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        logArea = new javax.swing.JTextArea();
+        logProductosArea = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        logConversacionArea = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Log");
 
-        logArea.setEditable(false);
-        logArea.setColumns(20);
-        logArea.setRows(5);
-        jScrollPane1.setViewportView(logArea);
+        logProductosArea.setEditable(false);
+        logProductosArea.setColumns(20);
+        logProductosArea.setLineWrap(true);
+        logProductosArea.setRows(5);
+        jScrollPane1.setViewportView(logProductosArea);
+
+        logConversacionArea.setEditable(false);
+        logConversacionArea.setColumns(20);
+        logConversacionArea.setLineWrap(true);
+        logConversacionArea.setRows(5);
+        jScrollPane2.setViewportView(logConversacionArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -49,14 +62,18 @@ public class LogFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -64,6 +81,8 @@ public class LogFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea logArea;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea logConversacionArea;
+    private javax.swing.JTextArea logProductosArea;
     // End of variables declaration//GEN-END:variables
 }

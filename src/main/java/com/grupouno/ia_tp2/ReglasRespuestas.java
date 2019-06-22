@@ -21,8 +21,8 @@ class ReglasRespuestas {
         this.lista = new ArrayList<>();
         //Sección Cliente - Notebook
 
-        Regla r = new PreguntaSiNo("¿Está buscando un producto de gama básica, media o premium?");
-        r.setAntecedentes(new ArrayList<String>() {
+        Regla regla = new Regla("¿Está buscando un producto de gama básica, media o premium?", Regla.Prioridad.ALTA);
+        regla.setAntecedentes(new ArrayList<String>() {
             {
                 add("buscar");
                 add("compar");
@@ -31,10 +31,10 @@ class ReglasRespuestas {
             }
         }
         );
-        lista.add(r);
+        lista.add(regla);
 
-        r = new Regla("¿Necesita un ordenador de gama baja, media o alta?");
-        r.setAntecedentes(new ArrayList<String>() {
+        regla = new Regla("¿Necesita un ordenador de gama baja, media o alta?", Regla.Prioridad.ALTA);
+        regla.setAntecedentes(new ArrayList<String>() {
             {
                 add("buscar");
                 add("compar");
@@ -43,10 +43,22 @@ class ReglasRespuestas {
             }
         }
         );
-        lista.add(r);
+        lista.add(regla);
 
-        r = new Regla("¿Está buscando un equipo portable o prioriza una pantalla mas grande?");
-        r.setAntecedentes(new ArrayList<String>() {
+        regla = new Regla("¿Está buscando un equipo portable o prioriza una pantalla mas grande?");
+        regla.setAntecedentes(new ArrayList<String>() {
+            {
+                add("gamma baja");
+                add("basica");
+                add("gamma media");
+                add("gamma alta");
+            }
+        }
+        );
+        lista.add(regla);
+
+        regla = new Regla("¿Prefiere un equipo con pantalla grande? ¿O prioriza algo más pequeño?");
+        regla.setAntecedentes(new ArrayList<String>() {
             {
                 add("baja");
                 add("basica");
@@ -55,22 +67,10 @@ class ReglasRespuestas {
             }
         }
         );
-        lista.add(r);
+        lista.add(regla);
 
-        r = new Regla("¿Prefiere un equipo con pantalla grande? ¿O prioriza algo más pequeño?");
-        r.setAntecedentes(new ArrayList<String>() {
-            {
-                add("baja");
-                add("basica");
-                add("media");
-                add("alta");
-            }
-        }
-        );
-        lista.add(r);
-
-        r = new Regla("¿Quiere un equipo último modelo o prefiere economizar comprando modelos anteriores?");
-        r.setAntecedentes(new ArrayList<String>() {
+        regla = new Regla("¿Quiere un equipo último modelo o prefiere economizar comprando modelos anteriores?");
+        regla.setAntecedentes(new ArrayList<String>() {
             {
                 add("pantalla");
                 add("grande");
@@ -80,10 +80,10 @@ class ReglasRespuestas {
             }
         }
         );
-        lista.add(r);
+        lista.add(regla);
 
-        PreguntaSiNo p = new PreguntaSiNo("¿Necesita un ordenador que salió recientemente en el mercado?");
-        p.setAntecedentes(new ArrayList<String>() {
+        PreguntaSiNo siNo1 = new PreguntaSiNo("¿Necesita un ordenador que salió recientemente en el mercado?");
+        siNo1.setAntecedentes(new ArrayList<String>() {
             {
                 add("pantalla");
                 add("grande");
@@ -93,7 +93,7 @@ class ReglasRespuestas {
             }
         }
         );
-        p.setIfSi(new ArrayList<String>() {
+        siNo1.setIfSi(new ArrayList<String>() {
             {
                 add("reciente");
                 add("ultimo");
@@ -101,17 +101,27 @@ class ReglasRespuestas {
             }
         }
         );
-        p.setIfNo(new ArrayList<String>() {
+        siNo1.setIfNo(new ArrayList<String>() {
             {
                 add("viejo");
                 add("economizar");
             }
         }
         );
-        lista.add(p);
+        lista.add(siNo1);
 
-        r = new Regla("¿Realiza trabajos de edición de imagenes/video?");
-        r.setAntecedentes(new ArrayList<String>() {
+        PreguntaSiNo siNo2 = new PreguntaSiNo("¿Está buscando un equipo con al menos 8GB de RAM?");
+        siNo2.setAntecedentes(new ArrayList<String>() {
+            {
+                add("edicion");
+                add("editar");
+            }
+        }
+        );
+        lista.add(siNo2);
+
+        siNo1 = new PreguntaSiNo("¿Realiza trabajos de edición de imagenes/video?");
+        siNo1.setAntecedentes(new ArrayList<String>() {
             {
                 add("ultimo");
                 add("modelo");
@@ -124,41 +134,39 @@ class ReglasRespuestas {
             }
         }
         );
-        lista.add(r);
+        siNo1.setIfSi(new ArrayList<String>() {
+            {
+                add("edicion");
+            }
+        }
+        );
+        siNo1.setSiguientes(new ArrayList<>());
+        siNo1.getSiguientes().add(siNo2);
+        lista.add(siNo1);
 
-        r = new Regla("¿Está buscando un equipo con al menos 8GB de RAM?");
-        r.setAntecedentes(new ArrayList<String>() {
+        regla = new Regla("¿Necesita una PC con 8GB de RAM como mínimo?");
+        regla.setAntecedentes(new ArrayList<String>() {
             {
                 add("edicion");
                 add("editar");
             }
         }
         );
-        lista.add(r);
-
-        r = new Regla("¿Necesita una PC con 8GB de RAM como mínimo?");
-        r.setAntecedentes(new ArrayList<String>() {
-            {
-                add("edicion");
-                add("editar");
-            }
-        }
-        );
-        lista.add(r);
+        lista.add(regla);
 
         /*ver que pasa con cadenas compuestas "mas de una palabra"
-        r = new Regla("¿Necesita un ordenador con grandes capacidades de almacenamiento?");
-        r.setAntecedentes(new ArrayList<String>() {
+        regla = new Regla("¿Necesita un ordenador con grandes capacidades de almacenamiento?");
+        regla.setAntecedentes(new ArrayList<String>() {
             {
                 add("edicion");
                 add("editar");
                 }
             }
         );
-        lista.add(r);
+        lista.add(regla);
          */
-        r = new Regla("¿Considera de utilidad que el ordenador este equipado con una unidad de estado sólido (SDD)?");
-        r.setAntecedentes(new ArrayList<String>() {
+        siNo1 = new PreguntaSiNo("¿Considera de utilidad que el ordenador este equipado con una unidad de estado sólido (SDD)?");
+        siNo1.setAntecedentes(new ArrayList<String>() {
             {
                 add("mucho");
                 add("almacenamiento");
@@ -167,10 +175,12 @@ class ReglasRespuestas {
             }
         }
         );
-        lista.add(r);
+        siNo1.setSiguientes(new ArrayList<>());
+        siNo1.getSiguientes().add(siNo2);
+        lista.add(siNo1);
 
-        p = new PreguntaSiNo("¿Necesita un ordenador con SSD?");
-        p.setAntecedentes(new ArrayList<String>() {
+        siNo1 = new PreguntaSiNo("¿Necesita un ordenador con SSD?");
+        siNo1.setAntecedentes(new ArrayList<String>() {
             {
                 add("mucho");
                 add("almacenamiento");
@@ -179,21 +189,19 @@ class ReglasRespuestas {
             }
         }
         );
-        p.setIfSi(new ArrayList<String>() {
+        siNo1.setIfSi(new ArrayList<String>() {
             {
                 add("ssd");
             }
         }
         );
-        p.setIfNo(new ArrayList<String>() {
-            {
-            }
-        }
-        );
-        lista.add(p);
 
-        r = new Regla("De acuerdo a sus necesidades, ¿cree que necesita un microprocesador potente?");
-        r.setAntecedentes(new ArrayList<String>() {
+        siNo1.setSiguientes(new ArrayList<>());
+        siNo1.getSiguientes().add(siNo2);
+        lista.add(siNo1);
+
+        regla = new Regla("De acuerdo a sus necesidades, ¿cree que necesita un microprocesador potente?");
+        regla.setAntecedentes(new ArrayList<String>() {
             {
                 add("querer");
                 add("ssd");
@@ -201,16 +209,16 @@ class ReglasRespuestas {
             }
         }
         );
-        lista.add(r);
+        lista.add(regla);
 
         //Ultimas dos filas
         this.genericas = new ArrayList<>();
-        r = new Regla("Perfecto!");
-        genericas.add(r);
-        r = new Regla("Excelente!");
-        genericas.add(r);
-        r = new Regla("Entendido!");
-        genericas.add(r);
+        regla = new Regla("Perfecto!");
+        genericas.add(regla);
+        regla = new Regla("Excelente!");
+        genericas.add(regla);
+        regla = new Regla("Entendido!");
+        genericas.add(regla);
 
     }
 
