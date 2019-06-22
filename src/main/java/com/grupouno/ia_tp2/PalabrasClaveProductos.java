@@ -12,12 +12,12 @@ import java.util.HashMap;
  *
  * @author Julian
  */
-public class PalabrasClave {
+public class PalabrasClaveProductos {
     
     public static ArrayList<String> listado;
     public HashMap<String, String> sinonimos;
 
-    public PalabrasClave() {
+    public PalabrasClaveProductos() {
         listado = new ArrayList<>();
         listado.add("notebook");
         listado.add("telefono");
@@ -34,6 +34,10 @@ public class PalabrasClave {
         listado.add("hd");
         listado.add("fhd");
         listado.add("4k");
+        listado.add("gamma media");
+        listado.add("gamma baja");
+        listado.add("gamma alta");
+        
         
         sinonimos = new HashMap<>();
         sinonimos.put("telefono", "smartphone");
@@ -43,6 +47,9 @@ public class PalabrasClave {
         sinonimos.put("chico", "portable");
         sinonimos.put("full", "fhd");
         sinonimos.put("fullhd", "fhd");
+        sinonimos.put("baja", "gamma baja");
+        sinonimos.put("alta", "gamma alta");
+        sinonimos.put("media", "gamma media");
     }
     
 }

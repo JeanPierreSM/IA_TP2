@@ -13,8 +13,8 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class ProcesadorTokens {
 
-    public PalabrasClave palabrasClave;
-    public PalabrasConversacion palabrasConver;
+    public PalabrasClaveProductos palabrasClave;
+    public PalabrasClaveConversacion palabrasConver;
     
     public String procesar(String token) {
         token = StringUtils.lowerCase(token);
@@ -23,8 +23,8 @@ public class ProcesadorTokens {
     }
 
     public ProcesadorTokens() {
-        this.palabrasClave = new PalabrasClave();
-        this.palabrasConver = new PalabrasConversacion();
+        this.palabrasClave = new PalabrasClaveProductos();
+        this.palabrasConver = new PalabrasClaveConversacion();
     }
 
     boolean esPalabraClave(String token) {

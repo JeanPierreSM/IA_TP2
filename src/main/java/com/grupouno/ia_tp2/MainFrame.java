@@ -190,7 +190,7 @@ public class MainFrame extends javax.swing.JFrame {
         if (asistente.getPreguntaSiNo() != null) {
             detectarRespuestaSiNo(input);
         } else {
-            detectarCaracteristicas(input);
+            detectarPalabrasClave(input);
         }
         actualizarSugeridos();
         responder(input);
@@ -226,14 +226,14 @@ public class MainFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void actualizarSugeridos() {
-        ArrayList<Producto> ar = asistente.getSugeridos();
+        ArrayList<Regla> ar = asistente.getSugeridos();
         if (!ar.isEmpty()) {
             if (ar.size() == 1) {
-                this.sugeridosArea.setText(ar.get(0).getNombre());
+                this.sugeridosArea.setText(ar.get(0).getConsecuente());
             } else {
-                String t = ar.get(0).getNombre();
+                String t = ar.get(0).getConsecuente();
                 for (int i = 1; i < ar.size(); i++) {
-                    t += "\n" + ar.get(i).getNombre();
+                    t += "\n" + ar.get(i).getConsecuente();
                 }
                 this.sugeridosArea.setText(t);
             }
@@ -249,7 +249,7 @@ public class MainFrame extends javax.swing.JFrame {
         escribirAgente(respuesta);
     }
 
-    private void detectarCaracteristicas(String input) {
+    private void detectarPalabrasClave(String input) {
         StringTokenizer tokenizer = new StringTokenizer(input);
 
         while (tokenizer.hasMoreTokens()) {

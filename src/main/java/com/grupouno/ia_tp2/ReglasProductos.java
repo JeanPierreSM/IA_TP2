@@ -11,15 +11,15 @@ import java.util.ArrayList;
  *
  * @author Julian
  */
-class ListaProductos {
+class ReglasProductos {
 
-    ArrayList<Producto> lista;
+    ArrayList<Regla> lista;
 
-    public ListaProductos() {
+    public ReglasProductos() {
         this.lista = new ArrayList<>();
 
-        Producto p = new Producto("Samsung Galaxy S10e");
-        p.setCaracteristicas(new ArrayList<String>() {
+        Regla p = new Regla("Samsung Galaxy S10e");
+        p.setAntecedentes(new ArrayList<String>() {
             {
                 add("smartphone");
                 add("alta gamma");
@@ -29,8 +29,8 @@ class ListaProductos {
         );
         lista.add(p);
         
-        p = new Producto("Samsung Galaxy S10");
-        p.setCaracteristicas(new ArrayList<String>() {
+        p = new Regla("Samsung Galaxy S10");
+        p.setAntecedentes(new ArrayList<String>() {
             {
                 add("smartphone");
                 add("alta gamma");
@@ -42,7 +42,7 @@ class ListaProductos {
         
     }
 
-    public ArrayList<Producto> getLista() {
+    public ArrayList<Regla> getLista() {
         return lista;
     }
 

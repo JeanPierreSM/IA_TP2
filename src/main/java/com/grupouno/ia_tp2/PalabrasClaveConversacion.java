@@ -11,12 +11,12 @@ import java.util.ArrayList;
  *
  * @author Julian
  */
-class PalabrasConversacion {
+class PalabrasClaveConversacion {
 
     public static ArrayList<String> listado;
     
     
-    public PalabrasConversacion() {
+    public PalabrasClaveConversacion() {
         listado = new ArrayList<>();
         
         //Seccion Cliente - Notebook

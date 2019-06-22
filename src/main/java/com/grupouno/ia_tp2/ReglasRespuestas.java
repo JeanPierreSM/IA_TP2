@@ -11,18 +11,18 @@ import java.util.ArrayList;
  *
  * @author Julian
  */
-class ListaRespuestas {
+class ReglasRespuestas {
 
-    ArrayList<Respuesta> lista;
-    ArrayList<Respuesta> genericas;
+    ArrayList<Regla> lista;
+    ArrayList<Regla> genericas;
 
-    public ListaRespuestas() {
+    public ReglasRespuestas() {
 
         this.lista = new ArrayList<>();
         //Sección Cliente - Notebook
 
-        Respuesta r = new PreguntaSiNo("¿Está buscando un producto de gama básica, media o premium?");
-        r.setPalabrasClave(new ArrayList<String>() {
+        Regla r = new PreguntaSiNo("¿Está buscando un producto de gama básica, media o premium?");
+        r.setAntecedentes(new ArrayList<String>() {
             {
                 add("buscar");
                 add("compar");
@@ -33,8 +33,8 @@ class ListaRespuestas {
         );
         lista.add(r);
 
-        r = new Respuesta("¿Necesita un ordenador de gama baja, media o alta?");
-        r.setPalabrasClave(new ArrayList<String>() {
+        r = new Regla("¿Necesita un ordenador de gama baja, media o alta?");
+        r.setAntecedentes(new ArrayList<String>() {
             {
                 add("buscar");
                 add("compar");
@@ -45,8 +45,8 @@ class ListaRespuestas {
         );
         lista.add(r);
 
-        r = new Respuesta("¿Está buscando un equipo portable o prioriza una pantalla mas grande?");
-        r.setPalabrasClave(new ArrayList<String>() {
+        r = new Regla("¿Está buscando un equipo portable o prioriza una pantalla mas grande?");
+        r.setAntecedentes(new ArrayList<String>() {
             {
                 add("baja");
                 add("basica");
@@ -57,8 +57,8 @@ class ListaRespuestas {
         );
         lista.add(r);
 
-        r = new Respuesta("¿Prefiere un equipo con pantalla grande? ¿O prioriza algo más pequeño?");
-        r.setPalabrasClave(new ArrayList<String>() {
+        r = new Regla("¿Prefiere un equipo con pantalla grande? ¿O prioriza algo más pequeño?");
+        r.setAntecedentes(new ArrayList<String>() {
             {
                 add("baja");
                 add("basica");
@@ -69,8 +69,8 @@ class ListaRespuestas {
         );
         lista.add(r);
 
-        r = new Respuesta("¿Quiere un equipo último modelo o prefiere economizar comprando modelos anteriores?");
-        r.setPalabrasClave(new ArrayList<String>() {
+        r = new Regla("¿Quiere un equipo último modelo o prefiere economizar comprando modelos anteriores?");
+        r.setAntecedentes(new ArrayList<String>() {
             {
                 add("pantalla");
                 add("grande");
@@ -83,7 +83,7 @@ class ListaRespuestas {
         lista.add(r);
 
         PreguntaSiNo p = new PreguntaSiNo("¿Necesita un ordenador que salió recientemente en el mercado?");
-        r.setPalabrasClave(new ArrayList<String>() {
+        p.setAntecedentes(new ArrayList<String>() {
             {
                 add("pantalla");
                 add("grande");
@@ -110,8 +110,8 @@ class ListaRespuestas {
         );
         lista.add(p);
 
-        r = new Respuesta("¿Realiza trabajos de edición de imagenes/video?");
-        r.setPalabrasClave(new ArrayList<String>() {
+        r = new Regla("¿Realiza trabajos de edición de imagenes/video?");
+        r.setAntecedentes(new ArrayList<String>() {
             {
                 add("ultimo");
                 add("modelo");
@@ -126,8 +126,8 @@ class ListaRespuestas {
         );
         lista.add(r);
 
-        r = new Respuesta("¿Está buscando un equipo con al menos 8GB de RAM?");
-        r.setPalabrasClave(new ArrayList<String>() {
+        r = new Regla("¿Está buscando un equipo con al menos 8GB de RAM?");
+        r.setAntecedentes(new ArrayList<String>() {
             {
                 add("edicion");
                 add("editar");
@@ -136,8 +136,8 @@ class ListaRespuestas {
         );
         lista.add(r);
 
-        r = new Respuesta("¿Necesita una PC con 8GB de RAM como mínimo?");
-        r.setPalabrasClave(new ArrayList<String>() {
+        r = new Regla("¿Necesita una PC con 8GB de RAM como mínimo?");
+        r.setAntecedentes(new ArrayList<String>() {
             {
                 add("edicion");
                 add("editar");
@@ -147,8 +147,8 @@ class ListaRespuestas {
         lista.add(r);
 
         /*ver que pasa con cadenas compuestas "mas de una palabra"
-        r = new Respuesta("¿Necesita un ordenador con grandes capacidades de almacenamiento?");
-        r.setPalabrasClave(new ArrayList<String>() {
+        r = new Regla("¿Necesita un ordenador con grandes capacidades de almacenamiento?");
+        r.setAntecedentes(new ArrayList<String>() {
             {
                 add("edicion");
                 add("editar");
@@ -157,9 +157,8 @@ class ListaRespuestas {
         );
         lista.add(r);
          */
-        
-        r = new Respuesta("¿Considera de utilidad que el ordenador este equipado con una unidad de estado sólido (SDD)?");
-        r.setPalabrasClave(new ArrayList<String>() {
+        r = new Regla("¿Considera de utilidad que el ordenador este equipado con una unidad de estado sólido (SDD)?");
+        r.setAntecedentes(new ArrayList<String>() {
             {
                 add("mucho");
                 add("almacenamiento");
@@ -169,9 +168,9 @@ class ListaRespuestas {
         }
         );
         lista.add(r);
-        
-        r = new Respuesta("¿Necesita un ordenador con SDD?");
-        r.setPalabrasClave(new ArrayList<String>() {
+
+        p = new PreguntaSiNo("¿Necesita un ordenador con SSD?");
+        p.setAntecedentes(new ArrayList<String>() {
             {
                 add("mucho");
                 add("almacenamiento");
@@ -180,10 +179,21 @@ class ListaRespuestas {
             }
         }
         );
-        lista.add(r);
-        
-        r = new Respuesta("De acuerdo a sus necesidades, ¿cree que necesita un microprocesador potente?");
-        r.setPalabrasClave(new ArrayList<String>() {
+        p.setIfSi(new ArrayList<String>() {
+            {
+                add("ssd");
+            }
+        }
+        );
+        p.setIfNo(new ArrayList<String>() {
+            {
+            }
+        }
+        );
+        lista.add(p);
+
+        r = new Regla("De acuerdo a sus necesidades, ¿cree que necesita un microprocesador potente?");
+        r.setAntecedentes(new ArrayList<String>() {
             {
                 add("querer");
                 add("ssd");
@@ -192,24 +202,23 @@ class ListaRespuestas {
         }
         );
         lista.add(r);
-        
+
         //Ultimas dos filas
-        
         this.genericas = new ArrayList<>();
-        r = new Respuesta("Perfecto!");
+        r = new Regla("Perfecto!");
         genericas.add(r);
-        r = new Respuesta("Excelente!");
+        r = new Regla("Excelente!");
         genericas.add(r);
-        r = new Respuesta("Entendido!");
+        r = new Regla("Entendido!");
         genericas.add(r);
 
     }
 
-    public ArrayList<Respuesta> getGenericas() {
+    public ArrayList<Regla> getGenericas() {
         return genericas;
     }
 
-    public ArrayList<Respuesta> getLista() {
+    public ArrayList<Regla> getLista() {
         return lista;
     }
 }

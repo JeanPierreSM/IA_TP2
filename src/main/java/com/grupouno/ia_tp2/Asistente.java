@@ -5,15 +5,13 @@
  */
 package com.grupouno.ia_tp2;
 
+import com.grupouno.ia_tp2.Regla.Prioridad;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Random;
 import java.util.StringTokenizer;
-import javax.swing.JFrame;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -24,19 +22,21 @@ public class Asistente {
 
     private ArrayList<String> MTCaracteristicas;
     private ProcesadorTokens procesadorTokens;
-    private ListaProductos listaProductos;
-    private ListaRespuestas listaResp;
+    private ReglasProductos listaProductos;
+    private ReglasRespuestas listaReglasResp;
     private LogFrame log;
     private PreguntaSiNo preguntaSiNo;
+    private ArrayList<Regla> aplicadas;
 
     public Asistente() {
 
         this.MTCaracteristicas = new ArrayList<>();
         this.procesadorTokens = new ProcesadorTokens();
-        this.listaProductos = new ListaProductos();
-        this.listaResp = new ListaRespuestas();
+        this.listaProductos = new ReglasProductos();
+        this.listaReglasResp = new ReglasRespuestas();
         this.log = new LogFrame();
         this.preguntaSiNo = null;
+        this.aplicadas = new ArrayList<>();
 
         log.setTitle("Logs");
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -64,11 +64,11 @@ public class Asistente {
         }
     }
 
-    ArrayList<Producto> getSugeridos() {
-        ArrayList<Producto> result = new ArrayList<>();
+    ArrayList<Regla> getSugeridos() {
+        ArrayList<Regla> result = new ArrayList<>();
         if (!MTCaracteristicas.isEmpty()) {
             for (Integer i = 0; i < listaProductos.getLista().size(); i++) {
-                if (listaProductos.getLista().get(i).getCaracteristicas().containsAll(MTCaracteristicas)) {
+                if (listaProductos.getLista().get(i).getAntecedentes().containsAll(MTCaracteristicas)) {
                     result.add(listaProductos.getLista().get(i));
                 }
             }
@@ -77,7 +77,7 @@ public class Asistente {
         return result;
     }
 
-    void log(ArrayList<Producto> sugeridos) {
+    void log(ArrayList<Regla> sugeridos) {
         String reglas = "";
         for (int i = 0; i < sugeridos.size(); i++) {
             if (i != 0) {
@@ -90,7 +90,7 @@ public class Asistente {
                 }
                 reglas += StringUtils.capitalize(MTCaracteristicas.get(j)) + "() ";
             }
-            reglas += "⇒ " + StringUtils.capitalize(sugeridos.get(i).getNombre());
+            reglas += "⇒ " + StringUtils.capitalize(sugeridos.get(i).getConsecuente());
         }
         log.getLogArea().setText(reglas);
     }
@@ -101,12 +101,15 @@ public class Asistente {
         return b;
     }
 
-    ArrayList<Respuesta> getConversaciones(ArrayList<String> palabrasConver) {
-        ArrayList<Respuesta> result = new ArrayList<>();
+    ArrayList<Regla> getConversaciones(ArrayList<String> palabrasConver) {
+        ArrayList<Regla> result = new ArrayList<>();
         if (!palabrasConver.isEmpty()) {
-            for (Integer i = 0; i < listaResp.getLista().size(); i++) {
-                if (listaResp.getLista().get(i).getPalabrasClave().containsAll(palabrasConver)) {
-                    result.add(listaResp.getLista().get(i));
+            for (Integer i = 0; i < listaReglasResp.getLista().size(); i++) {
+                ArrayList<String> antecedentes = listaReglasResp.getLista().get(i).getAntecedentes();
+
+                //1. CRITERIO: ESPECIFICIDAD
+                if (antecedentes.containsAll(palabrasConver)) {
+                    result.add(listaReglasResp.getLista().get(i));
                 }
             }
         }
@@ -114,8 +117,8 @@ public class Asistente {
     }
 
     String getRespuestaGenerica() {
-        Integer i = new Random().nextInt(listaResp.getGenericas().size());
-        String respuesta = listaResp.getGenericas().get(i).getOracion();
+        Integer i = new Random().nextInt(listaReglasResp.getGenericas().size());
+        String respuesta = listaReglasResp.getGenericas().get(i).getConsecuente();
         return respuesta;
     }
 
@@ -129,21 +132,30 @@ public class Asistente {
                 palabrasConver.add(token);
             }
         }
-        Respuesta respuesta;
-        ArrayList<Respuesta> respuestas = getConversaciones(palabrasConver);
+        Regla respuesta;
+        ArrayList<Regla> respuestas = getConversaciones(palabrasConver);
+
+        //2. CRITERIO: NO DUPLICIDAD
+        respuestas.removeAll(aplicadas);
         if (respuestas.isEmpty()) {
             preguntaSiNo = null;
             return getRespuestaGenerica();
         } else {
+
+            //3. CRITERIO: PRIORIDAD
+            respuestas = getPrioridadMasAlta(respuestas);
+
+            //4. CRITERIO: ALEATOREIDAD
             Integer i = new Random().nextInt(respuestas.size());
             respuesta = respuestas.get(i);
+            aplicadas.add(respuesta);
             if (respuesta.getClass().equals(PreguntaSiNo.class)) {
                 preguntaSiNo = (PreguntaSiNo) respuesta;
             } else {
                 preguntaSiNo = null;
             }
         }
-        return respuesta.getOracion();
+        return respuesta.getConsecuente();
     }
 
     public PreguntaSiNo getPreguntaSiNo() {
@@ -157,5 +169,21 @@ public class Asistente {
         } else {
             return null;
         }
+    }
+
+    private ArrayList<Regla> getPrioridadMasAlta(ArrayList<Regla> respuestas) {
+        ArrayList<Regla> result = new ArrayList<>();
+        Prioridad max = Prioridad.BAJA;
+        for (int i = 0; i < respuestas.size(); i++) {
+            Prioridad aux = respuestas.get(i).getPrioridad();
+            if(aux == Prioridad.ALTA) max = Prioridad.ALTA;
+            else{
+                if(aux == Prioridad.MEDIA && max == Prioridad.BAJA) max = Prioridad.MEDIA;
+            }
+        }
+        for(int i = 0; i < respuestas.size(); i++){
+            if(respuestas.get(i).getPrioridad() == max) result.add(respuestas.get(i));
+        }
+        return result;
     }
 }

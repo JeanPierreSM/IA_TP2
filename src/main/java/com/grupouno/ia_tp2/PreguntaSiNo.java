@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author Julian
  */
-public class PreguntaSiNo extends Respuesta {
+public class PreguntaSiNo extends Regla {
     
     public ArrayList<String> ifSi;
     public ArrayList<String> ifNo;
