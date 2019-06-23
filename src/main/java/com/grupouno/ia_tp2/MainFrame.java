@@ -320,6 +320,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void setCaracteristicasSiNo(ArrayList<String> resultados) {
         for (String resultado : resultados) {
+            asistente.addCaracteristica(resultado);
             resultado = StringUtils.capitalize(resultado);
             String text = this.detectadasArea.getText();
             if (text.isEmpty()) {

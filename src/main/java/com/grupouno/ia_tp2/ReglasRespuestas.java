@@ -300,11 +300,11 @@ class ReglasRespuestas {
         );
         lista.add(siNo13);
         
-        Regla regla14 = new Regla("¿Está buscando un equipo portable o prioriza una pantalla mas grande?", Regla.Prioridad.MEDIA);
+        Regla regla14 = new Regla("¿Está buscando un equipo portable o prioriza una pantalla mas grande?", Regla.Prioridad.ALTA);
         regla14.setAntecedentes(antecedentes2);
         lista.add(regla14);
         
-        Regla regla15 = new Regla("¿Prefiere un equipo con pantalla grande? ¿O prioriza algo más pequeño?", Regla.Prioridad.MEDIA);
+        Regla regla15 = new Regla("¿Prefiere un equipo con pantalla grande? ¿O prioriza algo más pequeño?", Regla.Prioridad.ALTA);
         regla15.setAntecedentes(antecedentes2);
         lista.add(regla15);
         

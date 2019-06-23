@@ -49,6 +49,7 @@ public class ProcesadorTokens {
         sinonimos.put("basico", "gamma baja");
         sinonimos.put("computadora", "notebook");
         sinonimos.put("microprocesador", "microprocesador potente");
+        sinonimos.put("ultimo", "reciente");
     }
 
     boolean esPalabraClaveProducto(String token) {

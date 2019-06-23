@@ -135,15 +135,31 @@ class ReglasProductos {
         );
         lista.add(p);
         
-        p = new Regla("Macbook Pro 17");
+        p = new Regla("Macbook Pro 17 Plus");
         p.setAntecedentes(new ArrayList<String>() {
             {
                 add("notebook");
                 add("ssd");
                 add("8gb");
                 add("microprocesador potente");
-                add("1tb");
-                add("1tb");
+                add("1tb hdd");
+                add("1tb hdd");
+                add("edicion");
+                add("reciente");
+                add("grande");
+                add("gamma alta");
+                }
+            }
+        );
+        lista.add(p);
+        
+        p = new Regla("Macbook Pro 17");
+        p.setAntecedentes(new ArrayList<String>() {
+            {
+                add("notebook");
+                add("8gb");
+                add("microprocesador potente");
+                add("1tb hdd");
                 add("edicion");
                 add("reciente");
                 add("grande");
@@ -160,7 +176,7 @@ class ReglasProductos {
                 add("ssd");
                 add("8gb");
                 add("microprocesador potente");
-                add("1tb");
+                add("1tb hdd");
                 add("edicion");
                 add("reciente");
                 add("portable");
