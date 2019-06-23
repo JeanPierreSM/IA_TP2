@@ -42,6 +42,7 @@ public class ProcesadorTokens {
         sinonimos.put("fullhd", "fhd");
         sinonimos.put("baja", "gamma baja");
         sinonimos.put("alta", "gamma alta");
+        sinonimos.put("premium", "gamma alta");
         sinonimos.put("media", "gamma media");
         sinonimos.put("medio", "gamma media");
         sinonimos.put("basica", "gamma baja");
