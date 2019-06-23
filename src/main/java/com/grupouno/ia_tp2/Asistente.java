@@ -44,8 +44,8 @@ public class Asistente {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice defaultScreen = ge.getDefaultScreenDevice();
         Rectangle rect = defaultScreen.getDefaultConfiguration().getBounds();
-        int x = 0;
-        int y = (int) (rect.getMaxY() / 2 - log.getHeight() / 2);
+        int x = (int) (rect.getMaxX() / 2 - log.getWidth() / 2);
+        int y = 0;
         log.setLocation(x, y);
         log.setVisible(true);
     }
