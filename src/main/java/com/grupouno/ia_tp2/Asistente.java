@@ -196,6 +196,7 @@ public class Asistente {
     private Regla getReglaPorCriterios(ArrayList<Regla> reglas) {
         ArrayList<Regla> respuestas = reglas;
         Regla respuesta;
+        PreguntaSiNo anterior = null;
 
         //2. CRITERIO: NO DUPLICIDAD
         respuestas.removeAll(aplicadas);
@@ -210,28 +211,34 @@ public class Asistente {
             //4. CRITERIO: ALEATOREIDAD
             Integer i = new Random().nextInt(respuestas.size());
             respuesta = respuestas.get(i);
+            
             aplicadas.add(respuesta);
+            anterior = preguntaSiNo;
             if (respuesta.getClass().equals(PreguntaSiNo.class)) {
                 preguntaSiNo = (PreguntaSiNo) respuesta;
             } else {
                 preguntaSiNo = null;
             }
         }
-        logReglaConversacion(respuesta);
+        logReglaConversacion(respuesta, anterior);
         return respuesta;
     }
 
-    private void logReglaConversacion(Regla respuesta) {
+    private void logReglaConversacion(Regla respuesta, PreguntaSiNo anterior) {
         String reglas = log.getLogConversacionArea().getText();
         if (!"".equals(reglas)) {
             reglas += '\n';
         }
         reglas += " > ";
-        for (Integer j = 0; j < MTConversacion.size(); j++) {
-            if (j != 0) {
-                reglas += "∧ ";
+        if (anterior != null) {
+            reglas += "siguientePregunta()";
+        } else {
+            for (Integer j = 0; j < MTConversacion.size(); j++) {
+                if (j != 0) {
+                    reglas += "∧ ";
+                }
+                reglas += StringUtils.capitalize(MTConversacion.get(j)) + "() ";
             }
-            reglas += StringUtils.capitalize(MTConversacion.get(j)) + "() ";
         }
         reglas += "⇒ " + StringUtils.capitalize(respuesta.getConsecuente());
         log.getLogConversacionArea().setText(reglas);

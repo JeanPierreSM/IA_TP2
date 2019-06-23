@@ -63,11 +63,19 @@ class ReglasRespuestas {
         antecedentes9.add("microprocesador");
         antecedentes9.add("generacion");
         
+        Regla ultima = new Regla("Estas son todas las sugerencias que encontre. Espero haberle sido de ayuda! Hasta pronto.");
+        
         PreguntaSiNo siNo0 = new PreguntaSiNo("¿Necesita el equipo para hacer labores de edición?");
         siNo0.setAntecedentes(antecedentes9);
         siNo0.setIfSi(new ArrayList<String>() {
             {
                 add("edicion");
+            }
+        }
+        );
+        siNo0.setSiguientes(new ArrayList<Regla>() {
+            {
+                add(ultima);
             }
         }
         );
@@ -78,6 +86,12 @@ class ReglasRespuestas {
         siNo1.setIfSi(new ArrayList<String>() {
             {
                 add("edicion");
+            }
+        }
+        );
+        siNo1.setSiguientes(new ArrayList<Regla>() {
+            {
+                add(ultima);
             }
         }
         );
