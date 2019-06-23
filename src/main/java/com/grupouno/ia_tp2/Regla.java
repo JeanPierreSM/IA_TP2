@@ -19,7 +19,7 @@ public class Regla {
 
     public Regla(String consecuente) {
         this.consecuente = consecuente;
-        this.prioridad = Prioridad.MEDIA;
+        this.prioridad = Prioridad.BAJA;
     }
 
     public Regla(String consecuente, Prioridad prioridad) {

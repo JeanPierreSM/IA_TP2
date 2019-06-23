@@ -142,7 +142,7 @@ public class Asistente {
             }
         }
         Regla respuesta;
-        ArrayList<Regla> respuestas = getConversaciones(palabrasConver);
+        ArrayList<Regla> respuestas = getConversaciones(MTConversacion);
         respuesta = getReglaPorCriterios(respuestas);
 
         return respuesta.getConsecuente();

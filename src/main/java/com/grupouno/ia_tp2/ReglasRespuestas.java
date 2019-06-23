@@ -237,7 +237,7 @@ class ReglasRespuestas {
         );
         lista.add(siNo9);
         
-        PreguntaSiNo siNo10 = new PreguntaSiNo("¿Necesita el equipo para hacer labores de edición?");
+        PreguntaSiNo siNo10 = new PreguntaSiNo("¿Necesita el equipo para hacer labores de edición?", Regla.Prioridad.BAJA);
         siNo10.setAntecedentes(antecedentes4);
         siNo10.setIfSi(new ArrayList<String>() {
             {
@@ -254,7 +254,7 @@ class ReglasRespuestas {
         );
         lista.add(siNo10);
         
-        PreguntaSiNo siNo11 = new PreguntaSiNo("¿Realiza trabajos de edición de imagenes/video?");
+        PreguntaSiNo siNo11 = new PreguntaSiNo("¿Realiza trabajos de edición de imagenes/video?", Regla.Prioridad.BAJA);
         siNo11.setAntecedentes(antecedentes4);
         siNo11.setIfSi(new ArrayList<String>() {
             {
@@ -300,11 +300,11 @@ class ReglasRespuestas {
         );
         lista.add(siNo13);
         
-        Regla regla14 = new Regla("¿Está buscando un equipo portable o prioriza una pantalla mas grande?");
+        Regla regla14 = new Regla("¿Está buscando un equipo portable o prioriza una pantalla mas grande?", Regla.Prioridad.MEDIA);
         regla14.setAntecedentes(antecedentes2);
         lista.add(regla14);
         
-        Regla regla15 = new Regla("¿Prefiere un equipo con pantalla grande? ¿O prioriza algo más pequeño?");
+        Regla regla15 = new Regla("¿Prefiere un equipo con pantalla grande? ¿O prioriza algo más pequeño?", Regla.Prioridad.MEDIA);
         regla15.setAntecedentes(antecedentes2);
         lista.add(regla15);
         

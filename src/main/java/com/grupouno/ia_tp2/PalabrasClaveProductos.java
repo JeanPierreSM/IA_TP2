@@ -19,6 +19,16 @@ public class PalabrasClaveProductos {
     public PalabrasClaveProductos() {
         listado = new ArrayList<>();
         listado.add("notebook");
+        listado.add("gamma baja");
+        listado.add("basica");
+        listado.add("gamma media");
+        listado.add("gamma alta");
+        listado.add("microprocesador potente");
+        listado.add("grande");
+        listado.add("portable");
+        listado.add("reciente");
+        listado.add("edicion");
+        listado.add("ssd");
         listado.add("telefono");
         listado.add("smartphone");
         listado.add("portable");
@@ -33,9 +43,6 @@ public class PalabrasClaveProductos {
         listado.add("hd");
         listado.add("fhd");
         listado.add("4k");
-        listado.add("gamma media");
-        listado.add("gamma baja");
-        listado.add("gamma alta");
     }
     
 }

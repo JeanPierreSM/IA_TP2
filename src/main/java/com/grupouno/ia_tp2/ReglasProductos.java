@@ -124,6 +124,102 @@ class ReglasProductos {
         );
         lista.add(p);
         
+        //PRODUCTOS NOTEBOOKS
+        p = new Regla("Notebook1");
+        p.setAntecedentes(new ArrayList<String>() {
+            {
+                add("notebook");
+                add("8gb");
+                }
+            }
+        );
+        lista.add(p);
+        
+        p = new Regla("Macbook Pro 17");
+        p.setAntecedentes(new ArrayList<String>() {
+            {
+                add("notebook");
+                add("ssd");
+                add("8gb");
+                add("microprocesador potente");
+                add("1tb");
+                add("1tb");
+                add("edicion");
+                add("reciente");
+                add("grande");
+                add("gamma alta");
+                }
+            }
+        );
+        lista.add(p);
+        
+        p = new Regla("Acer Aspire VX 15");
+        p.setAntecedentes(new ArrayList<String>() {
+            {
+                add("notebook");
+                add("ssd");
+                add("8gb");
+                add("microprocesador potente");
+                add("1tb");
+                add("edicion");
+                add("reciente");
+                add("portable");
+                add("gamma alta");
+                }
+            }
+        );
+        lista.add(p);
+        
+        p = new Regla("HP Pavillion 13");
+        p.setAntecedentes(new ArrayList<String>() {
+            {
+                add("notebook");
+                add("ssd");
+                add("8gb");
+                add("microprocesador potente");
+                add("reciente");
+                add("portable");
+                add("gamma media");
+                }
+            }
+        );
+        lista.add(p);
+        
+        p = new Regla("HP Omen");
+        p.setAntecedentes(new ArrayList<String>() {
+            {
+                add("notebook");
+                add("8gb");
+                add("microprocesador potente");
+                add("reciente");
+                add("grande");
+                add("gamma media");
+                }
+            }
+        );
+        lista.add(p);
+        
+        p = new Regla("Lenovo Base17");
+        p.setAntecedentes(new ArrayList<String>() {
+            {
+                add("notebook");
+                add("grande");
+                add("gamma baja");
+                }
+            }
+        );
+        lista.add(p);
+        
+        p = new Regla("Lenovo Base13");
+        p.setAntecedentes(new ArrayList<String>() {
+            {
+                add("portable");
+                add("notebook");
+                add("gamma baja");
+                }
+            }
+        );
+        lista.add(p);
     }
 
     public ArrayList<Regla> getLista() {
