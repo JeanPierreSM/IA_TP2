@@ -64,5 +64,34 @@ class PalabrasClaveConversacion {
         listado.add("diez mil");
         listado.add("veinte mil");
         listado.add("importa");
+        
+        //Seccion Cliente - Smartphone
+        listado.add("buscar");
+        listado.add("necesitar");
+        listado.add("comprar");
+        listado.add("redes");
+        listado.add("juegos");
+        listado.add("videojuegos");
+        listado.add("estudiar");
+        listado.add("camara");
+        listado.add("ram");
+        listado.add("3");
+        listado.add("micro");
+        listado.add("procesador");
+        listado.add("microprocesador");
+        listado.add("economico");
+        listado.add("barato");
+        listado.add("gamma");
+        listado.add("alta");
+        listado.add("baja");
+        listado.add("media");
+        listado.add("intermedio");
+        listado.add("pantalla");
+        listado.add("grande");
+        listado.add("almacenamiento");
+        listado.add("bateria");
+        listado.add("android");
+        listado.add("ios");
+        listado.add("nfc");
     }
 }

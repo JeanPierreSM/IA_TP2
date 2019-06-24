@@ -60,6 +60,25 @@ public class PalabrasClaveProductos {
         listado.add("2gb+");
         listado.add("buena cam");
         listado.add("4gb+");
+        
+         //Seccion Cliente - Smartphone
+        listado.add("redes");
+        listado.add("videojuegos");
+        listado.add("estudiar");
+        listado.add("camara");
+        listado.add("3gb");
+        listado.add("microprocesador potente");
+        listado.add("microprocesador");
+        listado.add("economico");
+        listado.add("gamma alta");
+        listado.add("gamma media");
+        listado.add("gamma baja");
+        listado.add("grande");
+        listado.add("256gb");
+        listado.add("bateria");
+        listado.add("android");
+        listado.add("ios");
+        listado.add("nfc");
     }
     
 }
