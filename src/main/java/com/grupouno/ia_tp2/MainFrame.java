@@ -20,12 +20,15 @@ import org.apache.commons.lang3.StringUtils;
 public class MainFrame extends javax.swing.JFrame {
 
     private Asistente asistente;
+    private boolean firstSend;
+    private boolean vendedor;
 
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
         initComponents();
+        firstSend = true;
     }
 
     public MainFrame(Asistente asistente) {
@@ -33,6 +36,7 @@ public class MainFrame extends javax.swing.JFrame {
         this.asistente = asistente;
         this.inputArea.requestFocus();
         this.sugeridosArea.setEnabled(false);
+        firstSend = true;
     }
 
     /**
@@ -184,17 +188,42 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_sendButtonActionPerformed
 
     private void send() {
-        String input = this.inputArea.getText();
-        this.inputArea.setText("");
-        escribirUsuario(input);
-        if (asistente.getPreguntaSiNo() != null) {
-            detectarRespuestaSiNo(input);
-            mostrarPreguntaSiguiente();
+        if (firstSend) {
+            String input = this.inputArea.getText();
+            
+            if (input.charAt(0) == 'v') {
+                vendedor = true;
+                this.inputArea.setText("");
+                firstSend = false;
+            }
+            if (input.charAt(0) == 'c') {
+                vendedor = false;
+                this.inputArea.setText("");
+                firstSend = false;
+            }
+            if(firstSend){
+                JOptionPane.showMessageDialog(this, "Error. Intente nuevamente ingresando v o c.");
+                this.inputArea.setText("");
+            }
+            
         } else {
-            detectarPalabrasClaveProducto(input);
-            responder(input);
+            String input = this.inputArea.getText();
+            this.inputArea.setText("");
+            escribirUsuario(input);
+            if (asistente.getPreguntaSiNo() != null) {
+                detectarRespuestaSiNo(input);
+            } else {
+                detectarPalabrasClaveProducto(input);
+            }
+            if (!vendedor) {
+                if (asistente.getPreguntaSiNo() != null) {
+                    mostrarPreguntaSiguiente();
+                } else {
+                    responder(input);
+                }
+            }
+            actualizarSugeridos();
         }
-        actualizarSugeridos();
     }
 
     private void inputAreaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputAreaKeyTyped
@@ -311,7 +340,7 @@ public class MainFrame extends javax.swing.JFrame {
                 } else {
                     resultados = asistente.getPreguntaSiNo().getIfNo();
                 }
-                if(resultados != null){
+                if (resultados != null) {
                     setCaracteristicasSiNo(resultados);
                 }
             }

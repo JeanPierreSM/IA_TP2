@@ -20,6 +20,7 @@ class ReglasRespuestas {
 
         this.lista = new ArrayList<>();
         
+        //REGLAS NOTEBOOK
 
         ArrayList<String> antecedentes1 = new ArrayList<String>();
         antecedentes1.add("buscar");
@@ -318,7 +319,7 @@ class ReglasRespuestas {
         
         
         
-        
+        //REGLAS TV
         
         ArrayList<String> antecedentes10 = new ArrayList<String>();
         antecedentes10.add("buscar");
@@ -499,7 +500,6 @@ class ReglasRespuestas {
         }
         );
         lista.add(siNo29);
-        
         
         
         this.genericas = new ArrayList<>();

@@ -5,7 +5,6 @@
  */
 package com.grupouno.ia_tp2;
 
-import java.util.HashMap;
 import javax.swing.JFrame;
 
 /**
