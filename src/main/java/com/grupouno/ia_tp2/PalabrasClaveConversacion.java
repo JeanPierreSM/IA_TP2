@@ -63,7 +63,9 @@ class PalabrasClaveConversacion {
         listado.add("4k");
         listado.add("diez mil");
         listado.add("veinte mil");
-        listado.add("importa");
+        listado.add("no importa");
+        listado.add("gama alta");
+        listado.add("gama media/baja");
         
         //Seccion Cliente - Smartphone
         listado.add("buscar");

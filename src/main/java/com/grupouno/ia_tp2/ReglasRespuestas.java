@@ -21,7 +21,6 @@ class ReglasRespuestas {
         this.lista = new ArrayList<>();
         
         //REGLAS NOTEBOOK
-
         ArrayList<String> antecedentes1 = new ArrayList<String>();
         antecedentes1.add("buscar");
         antecedentes1.add("compar");
@@ -319,8 +318,9 @@ class ReglasRespuestas {
         
         
         
-        //REGLAS TV
         
+        
+        //REGLAS TV
         ArrayList<String> antecedentes10 = new ArrayList<String>();
         antecedentes10.add("buscar");
         antecedentes10.add("comprar");
@@ -329,7 +329,6 @@ class ReglasRespuestas {
         
         ArrayList<String> antecedentes11 = (ArrayList<String>) antecedentes10.clone();
         antecedentes11.add("smart");
-
         
         ArrayList<String> antecedentes12 = (ArrayList<String>) antecedentes11.clone();
         antecedentes12.add("marca");
@@ -341,7 +340,6 @@ class ReglasRespuestas {
         ArrayList<String> antecedentes13 = (ArrayList<String>) antecedentes12.clone();
         antecedentes13.add("32");
         antecedentes13.add("suficiente");
-
         
         ArrayList<String> antecedentes14 = (ArrayList<String>) antecedentes13.clone();
         antecedentes14.add("hd");
@@ -396,7 +394,7 @@ class ReglasRespuestas {
         }
         );
         lista.add(siNo19);
-        
+        /*
         Regla regla20 = new Regla("¿Cuánto esta dispuesto a pagar?");
         regla20.setAntecedentes(antecedentes14);
         lista.add(regla20);
@@ -404,6 +402,55 @@ class ReglasRespuestas {
         Regla regla21 = new Regla("¿Cuál es su limite económico para gastar?");
         regla21.setAntecedentes(antecedentes14);
         lista.add(regla21);
+                */
+        
+        
+        PreguntaSiNo siNo20 = new PreguntaSiNo("¿Está dispuesto a gastar mucho dinero por un televisor?");
+        siNo20.setAntecedentes(antecedentes14);
+        siNo20.setIfSi(new ArrayList<String>() {
+            {
+                add("gama alta");
+            }
+        }
+        );
+        siNo20.setIfNo(new ArrayList<String>() {
+            {
+                add("gama media/baja");
+            }
+        }
+        );
+        siNo20.setSiguientes(new ArrayList<Regla>() {
+            {
+                add(siNo18);
+                add(siNo19);
+            }
+        }
+        );
+        lista.add(siNo20);
+        
+        PreguntaSiNo siNo21 = new PreguntaSiNo("¿Pretende gastar mucho dinero por un televisor?");
+        siNo21.setAntecedentes(antecedentes14);
+        siNo21.setIfSi(new ArrayList<String>() {
+            {
+                add("gama alta");
+            }
+        }
+        );
+        siNo21.setIfNo(new ArrayList<String>() {
+            {
+                add("gama media/baja");
+            }
+        }
+        );
+        siNo21.setSiguientes(new ArrayList<Regla>() {
+            {
+                add(siNo18);
+                add(siNo19);
+            }
+        }
+        );
+        lista.add(siNo21);
+        
         
         Regla regla22 = new Regla("¿Qué resolución de pantalla necesita?");
         regla22.setAntecedentes(antecedentes13);
@@ -436,7 +483,7 @@ class ReglasRespuestas {
         );
         lista.add(siNo24);
         
-        PreguntaSiNo siNo25 = new PreguntaSiNo("¿Un televisor de 32 pulgadas le parece bien??");
+        PreguntaSiNo siNo25 = new PreguntaSiNo("¿Un televisor de 32 pulgadas le parece bien?");
         siNo25.setAntecedentes(antecedentes12);
         siNo25.setIfSi(new ArrayList<String>() {
             {
@@ -844,6 +891,13 @@ class ReglasRespuestas {
         Regla regla50 = new Regla("¿Para qué lo vas a utilizar al smartphone?");
         regla50.setAntecedentes(antecedentes16);
         lista.add(regla50);
+        
+        
+        
+        
+        
+        
+        
         
         this.genericas = new ArrayList<>();
         Regla gen = new Regla("Perfecto!");

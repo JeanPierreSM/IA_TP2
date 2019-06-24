@@ -18,6 +18,8 @@ public class PalabrasClaveProductos {
 
     public PalabrasClaveProductos() {
         listado = new ArrayList<>();
+        
+        //Seccion Cliente - Notebook
         listado.add("notebook");
         listado.add("gamma baja");
         listado.add("basica");
@@ -44,6 +46,7 @@ public class PalabrasClaveProductos {
         listado.add("fhd");
         listado.add("4k");
         
+        //Seccion Cliente - Televisor
         listado.add("televisor");
         listado.add("smart");
         listado.add("samsung");
@@ -55,6 +58,12 @@ public class PalabrasClaveProductos {
         listado.add("hd");
         listado.add("fullhd");
         listado.add("4k");
+        listado.add("diez mil");
+        listado.add("veinte mil");
+        listado.add("no importa");
+        listado.add("gama alta");
+        listado.add("gama media/baja");
+        
         
         listado.add("tablet");
         listado.add("2gb+");

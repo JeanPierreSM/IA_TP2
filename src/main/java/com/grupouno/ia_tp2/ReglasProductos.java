@@ -28,6 +28,7 @@ class ReglasProductos {
                 add("samsung");
                 add("32 pulgadas");
                 add("hd");
+                add("gama media/baja");
                 }
             }
         );
@@ -41,6 +42,7 @@ class ReglasProductos {
                 add("tcl");
                 add("32 pulgadas");
                 add("hd");
+                add("gama media/baja");
                 }
             }
         );
@@ -54,6 +56,7 @@ class ReglasProductos {
                 add("lg");
                 add("32 pulgadas");
                 add("hd");
+                add("gama media/baja");
                 }
             }
         );
@@ -67,24 +70,58 @@ class ReglasProductos {
                 add("philips");
                 add("32");
                 add("hd");
+                add("gama media/baja");
                 }
             }
         );
         lista.add(p);
         
-        p = new Regla("Smart TV 40 Full HD Samsung Un40j5200");
+        p = new Regla("Smart TV 40 4K Samsung Un40j5200");
         p.setAntecedentes(new ArrayList<String>() {
             {
                 add("televisor");
                 add("smart");
                 add("samsung");
                 add("mas de 32 pulgadas");
-                add("fullhd");
+                add("4k");
+                add("gama alta");
                 }
             }
         );
         lista.add(p);
         
+        
+//nuevassssssss
+         
+        p = new Regla("Smart TV 40 HD TCL URj420");
+        p.setAntecedentes(new ArrayList<String>() {
+            {
+                add("televisor");
+                add("smart");
+                add("samsung");
+                add("mas de 32 pulgadas");
+                add("hd");
+                add("gama alta");
+                }
+            }
+        );
+        lista.add(p);
+        
+        p = new Regla("TV Philips 32 Netflix Smart GH819244");
+        p.setAntecedentes(new ArrayList<String>() {
+            {
+                add("televisor");
+                add("smart");
+                add("philips");
+                add("32 pulgadas");
+                add("fullhd");
+                add("gama media/baja");
+                }
+            }
+        );
+        lista.add(p);
+        
+
         
         //PRODUCTOS TABLETS
         p = new Regla("Tablet Gadnic Fenix Phone Dual Chip");
