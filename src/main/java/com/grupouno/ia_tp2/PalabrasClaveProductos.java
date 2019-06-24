@@ -55,6 +55,11 @@ public class PalabrasClaveProductos {
         listado.add("hd");
         listado.add("fullhd");
         listado.add("4k");
+        
+        listado.add("tablet");
+        listado.add("2gb+");
+        listado.add("buena cam");
+        listado.add("4gb+");
     }
     
 }
