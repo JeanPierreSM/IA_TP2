@@ -501,6 +501,347 @@ class ReglasRespuestas {
         );
         lista.add(siNo29);
         
+        //REGLAS SMARTPHONE
+        ArrayList<String> antecedentes16 = new ArrayList<>();
+        antecedentes16.add("buscar");
+        antecedentes16.add("necesitar");
+        antecedentes16.add("comprar");
+        
+        ArrayList<String> antecedentes17 = (ArrayList<String>) antecedentes16.clone();
+        antecedentes17.add("redes");
+        antecedentes17.add("juegos");
+        antecedentes17.add("videojuegos");
+        antecedentes17.add("estudiar");
+        
+        ArrayList<String> antecedentes18 = (ArrayList<String>) antecedentes17.clone();
+        antecedentes18.add("camara");
+        
+        ArrayList<String> antecedentes19 = (ArrayList<String>) antecedentes18.clone();
+        antecedentes19.add("ram");
+        antecedentes19.add("3");
+        
+        ArrayList<String> antecedentes20 = (ArrayList<String>) antecedentes19.clone();
+        antecedentes20.add("micro");
+        antecedentes20.add("procesador");
+        antecedentes20.add("microprocesador");
+        
+        ArrayList<String> antecedentes21 = (ArrayList<String>) antecedentes20.clone();
+        antecedentes21.add("economico");
+        antecedentes21.add("barato");
+        antecedentes21.add("gamma");
+        antecedentes21.add("alta");
+        antecedentes21.add("baja");
+        antecedentes21.add("media");
+        antecedentes21.add("intermedio");
+        
+        ArrayList<String> antecedentes22 = (ArrayList<String>) antecedentes21.clone();
+        antecedentes22.add("pantalla");
+        antecedentes22.add("grande");
+        
+        ArrayList<String> antecedentes23 = (ArrayList<String>) antecedentes22.clone();
+        antecedentes23.add("almacenamiento");
+        
+        ArrayList<String> antecedentes24 = (ArrayList<String>) antecedentes23.clone();
+        antecedentes24.add("bateria");
+        
+        ArrayList<String> antecedentes25 = (ArrayList<String>) antecedentes24.clone();
+        antecedentes25.add("android");
+        antecedentes25.add("ios");
+        
+        ArrayList<String> antecedentes26 = (ArrayList<String>) antecedentes25.clone();
+        antecedentes26.add("nfc");
+        
+        PreguntaSiNo siNo30 = new PreguntaSiNo("¿Necesita una pantalla de tamaño considerable?");
+        siNo30.setAntecedentes(antecedentes26);
+        siNo30.setIfSi(new ArrayList<String>() {
+            {
+                add("grande"); 
+            }
+        }
+        );
+        siNo30.setIfNo(new ArrayList<String>() {
+            {
+                add("portable"); 
+            }
+        }
+        );
+        siNo30.setSiguientes(new ArrayList<Regla>() {
+            {
+                add(ultima);
+            }
+        }
+        );
+        lista.add(siNo30);
+        
+        PreguntaSiNo siNo31 = new PreguntaSiNo("¿Quiere un celular con pantalla grande?");
+        siNo31.setAntecedentes(antecedentes26);
+        siNo31.setIfSi(new ArrayList<String>() {
+            {
+                add("grande"); 
+            }
+        }
+        );
+        siNo31.setIfNo(new ArrayList<String>() {
+            {
+                add("portable"); 
+            }
+        }
+        );
+        siNo31.setSiguientes(new ArrayList<Regla>() {
+            {
+                add(ultima);
+            }
+        }
+        );
+        lista.add(siNo31);
+        
+        PreguntaSiNo siNo32 = new PreguntaSiNo("¿Quiere un smartphone con tecnologia NFC?");
+        siNo32.setAntecedentes(antecedentes25);
+        siNo32.setIfSi(new ArrayList<String>() {
+            {
+                add("nfc"); 
+            }
+        }
+        );
+        siNo32.setSiguientes(new ArrayList<Regla>() {
+            {
+                add(siNo30);
+                add(siNo31);
+            }
+        }
+        );
+        lista.add(siNo32);
+        
+        PreguntaSiNo siNo33 = new PreguntaSiNo("¿Necesita que el dispositivo cuente con tecnologia NFC?");
+        siNo33.setAntecedentes(antecedentes25);
+        siNo33.setIfSi(new ArrayList<String>() {
+            {
+                add("nfc"); 
+            }
+        }
+        );
+        siNo33.setSiguientes(new ArrayList<Regla>() {
+            {
+                add(siNo30);
+                add(siNo31);
+            }
+        }
+        );
+        lista.add(siNo33);
+        
+        Regla regla33 = new Regla("¿Quiere un celular con sistema operativo Android? O prefiere iOS?");
+        regla33.setAntecedentes(antecedentes24);
+        lista.add(regla33);
+        
+        Regla regla34 = new Regla("¿Prefiere un smartphone con sistema operativo Android o iOS?");
+        regla34.setAntecedentes(antecedentes24);
+        lista.add(regla34);
+        
+        PreguntaSiNo siNo35 = new PreguntaSiNo("¿Quiere un celular con gran capacidad de bateria (3000MAh)?");
+        siNo35.setAntecedentes(antecedentes23);
+        siNo33.setIfSi(new ArrayList<String>() {
+            {
+                add("bateria grande"); 
+            }
+        }
+        );
+        siNo33.setSiguientes(new ArrayList<Regla>() {
+            {
+                add(regla33);
+                add(regla34);
+            }
+        }
+        );
+        lista.add(siNo35);
+        
+        PreguntaSiNo siNo36 = new PreguntaSiNo("¿Necesita un celular con mucha batería?");
+        siNo36.setAntecedentes(antecedentes23);
+        siNo36.setIfSi(new ArrayList<String>() {
+            {
+                add("bateria grande"); 
+            }
+        }
+        );
+        siNo36.setSiguientes(new ArrayList<Regla>() {
+            {
+                add(regla33);
+                add(regla34);
+            }
+        }
+        );
+        lista.add(siNo36);
+        
+        PreguntaSiNo siNo37 = new PreguntaSiNo("¿Necesita un celular con gran capacidad de almacenamiento interno?");
+        siNo37.setAntecedentes(antecedentes22);
+        siNo37.setIfSi(new ArrayList<String>() {
+            {
+                add("almacenamiento interno"); 
+            }
+        }
+        );
+        siNo37.setSiguientes(new ArrayList<Regla>() {
+            {
+                add(siNo35);
+                add(siNo36);
+            }
+        }
+        );
+        lista.add(siNo37);
+        
+        PreguntaSiNo siNo38 = new PreguntaSiNo("¿Quiere un celular con mucha capacidad de almacenamiento?");
+        siNo38.setAntecedentes(antecedentes22);
+        siNo38.setIfSi(new ArrayList<String>() {
+            {
+                add("almacenamiento interno"); 
+            }
+        }
+        );
+        siNo38.setSiguientes(new ArrayList<Regla>() {
+            {
+                add(siNo35);
+                add(siNo36);
+            }
+        }
+        );
+        lista.add(siNo38);
+        
+        PreguntaSiNo siNo39 = new PreguntaSiNo("¿Prefiere un celular con al menos 3GB de RAM?");
+        siNo39.setAntecedentes(antecedentes21);
+        siNo39.setIfSi(new ArrayList<String>() {
+            {
+                add("3gb"); 
+            }
+        }
+        );
+        siNo39.setSiguientes(new ArrayList<Regla>() {
+            {
+                add(siNo37);
+                add(siNo38);
+            }
+        }
+        );
+        lista.add(siNo39);
+        
+        PreguntaSiNo siNo40 = new PreguntaSiNo("¿Necesita un smartphone que tenga, como mínimo, 3GB de RAM?");
+        siNo40.setAntecedentes(antecedentes21);
+        siNo40.setIfSi(new ArrayList<String>() {
+            {
+                add("3gb"); 
+            }
+        }
+        );
+        siNo40.setSiguientes(new ArrayList<Regla>() {
+            {
+                add(siNo37);
+                add(siNo38);
+            }
+        }
+        );
+        lista.add(siNo40);
+        
+        PreguntaSiNo siNo41 = new PreguntaSiNo("¿Necesita una pantalla de tamaño considerable?");
+        siNo41.setAntecedentes(antecedentes20);
+        siNo41.setIfSi(new ArrayList<String>() {
+            {
+                add("grande"); 
+            }
+        }
+        );
+        siNo41.setIfNo(new ArrayList<String>() {
+            {
+                add("portable"); 
+            }
+        }
+        );
+        siNo41.setSiguientes(new ArrayList<Regla>() {
+            {
+                add(siNo39);
+                add(siNo40);
+            }
+        }
+        );
+        lista.add(siNo41);
+        
+        PreguntaSiNo siNo42 = new PreguntaSiNo("¿Quiere un celular con pantalla grande?");
+        siNo42.setAntecedentes(antecedentes20);
+        siNo42.setIfSi(new ArrayList<String>() {
+            {
+                add("grande"); 
+            }
+        }
+        );
+        siNo42.setIfNo(new ArrayList<String>() {
+            {
+                add("portable"); 
+            }
+        }
+        );
+        siNo42.setSiguientes(new ArrayList<Regla>() {
+            {
+                add(siNo39);
+                add(siNo40);
+            }
+        }
+        );
+        lista.add(siNo42);
+        
+        Regla regla43 = new Regla("¿Qué procesador requiere para satisfacer sus necesidades?");
+        regla43.setAntecedentes(antecedentes19);
+        lista.add(regla43);
+        
+        Regla regla44 = new Regla("¿Qué microprocesador considera necesario que contenga el celular?");
+        regla44.setAntecedentes(antecedentes19);
+        lista.add(regla44);
+        
+        Regla regla45 = new Regla("¿Cuánto esta dispuesto a pagar?");
+        regla45.setAntecedentes(antecedentes18);
+        lista.add(regla45);
+        
+        Regla regla46 = new Regla("¿Cuál es su limite economico para gastar?");
+        regla46.setAntecedentes(antecedentes18);
+        lista.add(regla46);
+        
+        PreguntaSiNo siNo47 = new PreguntaSiNo("¿Necesita una camara superior a 12Mpx?");
+        siNo47.setAntecedentes(antecedentes17);
+        siNo47.setIfSi(new ArrayList<String>() {
+            {
+                add("12mp"); 
+            }
+        }
+        );
+        siNo47.setSiguientes(new ArrayList<Regla>() {
+            {
+                add(regla45);
+                add(regla46);
+            }
+        }
+        );
+        lista.add(siNo47);
+        
+        PreguntaSiNo siNo48 = new PreguntaSiNo("¿Quiere una camara con mayor resolución que 12Mpx?");
+        siNo48.setAntecedentes(antecedentes17);
+        siNo48.setIfSi(new ArrayList<String>() {
+            {
+                add("12mp"); 
+            }
+        }
+        );
+        siNo48.setSiguientes(new ArrayList<Regla>() {
+            {
+                add(regla45);
+                add(regla46);
+            }
+        }
+        );
+        lista.add(siNo48);
+        
+        Regla regla49 = new Regla("¿Qué uso le vas a dar al dispositivo?");
+        regla49.setAntecedentes(antecedentes16);
+        lista.add(regla49);
+        
+        Regla regla50 = new Regla("¿Para qué lo vas a utilizar al smartphone?");
+        regla50.setAntecedentes(antecedentes16);
+        lista.add(regla50);
         
         this.genericas = new ArrayList<>();
         Regla gen = new Regla("Perfecto!");
@@ -509,7 +850,6 @@ class ReglasRespuestas {
         genericas.add(gen);
         gen = new Regla("Entendido!");
         genericas.add(gen);
-
     }
 
     public ArrayList<Regla> getGenericas() {
