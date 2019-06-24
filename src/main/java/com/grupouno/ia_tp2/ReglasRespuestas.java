@@ -503,6 +503,7 @@ class ReglasRespuestas {
         
         //REGLAS SMARTPHONE
         ArrayList<String> antecedentes16 = new ArrayList<>();
+        antecedentes16.add("smartphone");
         antecedentes16.add("buscar");
         antecedentes16.add("necesitar");
         antecedentes16.add("comprar");
@@ -639,13 +640,13 @@ class ReglasRespuestas {
         
         PreguntaSiNo siNo35 = new PreguntaSiNo("¿Quiere un celular con gran capacidad de bateria (3000MAh)?");
         siNo35.setAntecedentes(antecedentes23);
-        siNo33.setIfSi(new ArrayList<String>() {
+        siNo35.setIfSi(new ArrayList<String>() {
             {
                 add("bateria grande"); 
             }
         }
         );
-        siNo33.setSiguientes(new ArrayList<Regla>() {
+        siNo35.setSiguientes(new ArrayList<Regla>() {
             {
                 add(regla33);
                 add(regla34);

@@ -67,6 +67,7 @@ class PalabrasClaveConversacion {
         
         //Seccion Cliente - Smartphone
         listado.add("buscar");
+        listado.add("smartphone");
         listado.add("necesitar");
         listado.add("comprar");
         listado.add("redes");

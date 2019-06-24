@@ -19,32 +19,8 @@ class ReglasProductos {
         this.lista = new ArrayList<>();
         
         
-        //PRODUCTOS SMARTPHONES.
-        Regla p = new Regla("Samsung Galaxy S10e");
-        p.setAntecedentes(new ArrayList<String>() {
-            {
-                add("smartphone");
-                add("alta gamma");
-                add("portable");
-                }
-            }
-        );
-        lista.add(p);
-        
-        p = new Regla("Samsung Galaxy S10");
-        p.setAntecedentes(new ArrayList<String>() {
-            {
-                add("smartphone");
-                add("alta gamma");
-                add("grande");
-                }
-            }
-        );
-        lista.add(p);
-        
-        
         //PRODUCTOS TELEVISORES.
-        p = new Regla("Smart TV 32 HD Samsung J4300");
+        Regla p = new Regla("Smart TV 32 HD Samsung J4300");
         p.setAntecedentes(new ArrayList<String>() {
             {
                 add("televisor");
@@ -245,6 +221,107 @@ class ReglasProductos {
                 add("portable");
                 add("notebook");
                 add("gamma baja");
+                }
+            }
+        );
+        lista.add(p);
+        
+        p = new Regla("Samsung Galaxy S10");
+        p.setAntecedentes(new ArrayList<String>() {
+            {
+                add("portable");
+                add("notebook");
+                add("gamma baja");
+                }
+            }
+        );
+        lista.add(p);
+        
+        //PRODUCTOS SMARTPHONES.
+        p = new Regla("Samsung Galaxy S10e");
+        p.setAntecedentes(new ArrayList<String>() {
+            {
+                add("smartphone");
+                add("alta gamma");
+                add("portable");
+                add("camara");
+                add("3gb");
+                add("android");
+                add("redes");
+                }
+            }
+        );
+        lista.add(p);
+        
+        p = new Regla("Samsung Galaxy S10");
+        p.setAntecedentes(new ArrayList<String>() {
+            {
+                add("smartphone");
+                add("alta gamma");
+                add("grande");
+                add("camara");
+                add("3gb");
+                add("android");
+                add("nfc");
+                add("redes");
+                }
+            }
+        );
+        lista.add(p);
+        
+        p = new Regla("Motorla Moto G7");
+        p.setAntecedentes(new ArrayList<String>() {
+            {
+                add("smartphone");
+                add("gamma media");
+                add("grande");
+                add("3gb");
+                add("android");
+                add("nfc");
+                add("redes");
+                }
+            }
+        );
+        lista.add(p);
+        
+        p = new Regla("Motorla Moto E");
+        p.setAntecedentes(new ArrayList<String>() {
+            {
+                add("smartphone");
+                add("gamma baja");
+                add("grande");
+                add("android");
+                add("redes");
+                }
+            }
+        );
+        lista.add(p);
+        
+        p = new Regla("iPhone X SR");
+        p.setAntecedentes(new ArrayList<String>() {
+            {
+                add("smartphone");
+                add("gamma alta");
+                add("camara");
+                add("grande");
+                add("ios");
+                add("3gb");
+                add("redes");
+                }
+            }
+        );
+        lista.add(p);
+        
+        p = new Regla("iPhone X");
+        p.setAntecedentes(new ArrayList<String>() {
+            {
+                add("smartphone");
+                add("gamma alta");
+                add("camara");
+                add("compacto");
+                add("3gb");
+                add("ios");
+                add("redes");
                 }
             }
         );
