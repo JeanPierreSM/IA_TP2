@@ -530,13 +530,14 @@ class ReglasRespuestas {
         antecedentes21.add("economico");
         antecedentes21.add("barato");
         antecedentes21.add("gamma");
-        antecedentes21.add("alta");
-        antecedentes21.add("baja");
-        antecedentes21.add("media");
+        antecedentes21.add("gamma alta");
+        antecedentes21.add("gamma baja");
+        antecedentes21.add("gamma media");
         antecedentes21.add("intermedio");
         
         ArrayList<String> antecedentes22 = (ArrayList<String>) antecedentes21.clone();
         antecedentes22.add("pantalla");
+        antecedentes22.add("portable");
         antecedentes22.add("grande");
         
         ArrayList<String> antecedentes23 = (ArrayList<String>) antecedentes22.clone();
@@ -552,7 +553,7 @@ class ReglasRespuestas {
         ArrayList<String> antecedentes26 = (ArrayList<String>) antecedentes25.clone();
         antecedentes26.add("nfc");
         
-        PreguntaSiNo siNo30 = new PreguntaSiNo("¿Necesita una pantalla de tamaño considerable?");
+        PreguntaSiNo siNo30 = new PreguntaSiNo("¿Necesita una pantalla de tamaño considerable?", Regla.Prioridad.BAJA);
         siNo30.setAntecedentes(antecedentes26);
         siNo30.setIfSi(new ArrayList<String>() {
             {
@@ -574,7 +575,7 @@ class ReglasRespuestas {
         );
         lista.add(siNo30);
         
-        PreguntaSiNo siNo31 = new PreguntaSiNo("¿Quiere un celular con pantalla grande?");
+        PreguntaSiNo siNo31 = new PreguntaSiNo("¿Quiere un celular con pantalla grande?", Regla.Prioridad.BAJA);
         siNo31.setAntecedentes(antecedentes26);
         siNo31.setIfSi(new ArrayList<String>() {
             {
@@ -740,7 +741,7 @@ class ReglasRespuestas {
         );
         lista.add(siNo40);
         
-        PreguntaSiNo siNo41 = new PreguntaSiNo("¿Necesita una pantalla de tamaño considerable?");
+        PreguntaSiNo siNo41 = new PreguntaSiNo("¿Necesita una pantalla de tamaño considerable?", Regla.Prioridad.ALTA);
         siNo41.setAntecedentes(antecedentes20);
         siNo41.setIfSi(new ArrayList<String>() {
             {
@@ -763,7 +764,7 @@ class ReglasRespuestas {
         );
         lista.add(siNo41);
         
-        PreguntaSiNo siNo42 = new PreguntaSiNo("¿Quiere un celular con pantalla grande?");
+        PreguntaSiNo siNo42 = new PreguntaSiNo("¿Quiere un celular con pantalla grande?", Regla.Prioridad.ALTA);
         siNo42.setAntecedentes(antecedentes20);
         siNo42.setIfSi(new ArrayList<String>() {
             {

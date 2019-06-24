@@ -248,6 +248,7 @@ class ReglasProductos {
                 add("3gb");
                 add("android");
                 add("redes");
+                add("almacenamiento interno");
                 }
             }
         );
@@ -264,6 +265,8 @@ class ReglasProductos {
                 add("android");
                 add("nfc");
                 add("redes");
+                add("bateria grande");
+                add("almacenamiento interno");
                 }
             }
         );
@@ -279,6 +282,7 @@ class ReglasProductos {
                 add("android");
                 add("nfc");
                 add("redes");
+                add("bateria grande");
                 }
             }
         );
@@ -307,6 +311,9 @@ class ReglasProductos {
                 add("ios");
                 add("3gb");
                 add("redes");
+                add("nfc");
+                add("bateria grande");
+                add("almacenamiento interno");
                 }
             }
         );
@@ -318,10 +325,12 @@ class ReglasProductos {
                 add("smartphone");
                 add("gamma alta");
                 add("camara");
-                add("compacto");
+                add("portable");
                 add("3gb");
                 add("ios");
                 add("redes");
+                add("almacenamiento interno");
+                add("nfc");
                 }
             }
         );

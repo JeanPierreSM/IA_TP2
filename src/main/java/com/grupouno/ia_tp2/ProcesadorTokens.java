@@ -54,6 +54,7 @@ public class ProcesadorTokens {
         sinonimos.put("juegos", "videojuegos");
         sinonimos.put("gaming", "videojuegos");
         sinonimos.put("3", "3gb");
+        sinonimos.put("jugar", "videojuegos");
     }
 
     boolean esPalabraClaveProducto(String token) {
