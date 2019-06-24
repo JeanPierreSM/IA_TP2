@@ -43,6 +43,18 @@ public class PalabrasClaveProductos {
         listado.add("hd");
         listado.add("fhd");
         listado.add("4k");
+        
+        listado.add("televisor");
+        listado.add("smart");
+        listado.add("samsung");
+        listado.add("lg");
+        listado.add("tcl");
+        listado.add("philips");
+        listado.add("32 pulgadas");
+        listado.add("mas de 32 pulgadas");
+        listado.add("hd");
+        listado.add("fullhd");
+        listado.add("4k");
     }
     
 }

@@ -47,10 +47,10 @@ class ReglasProductos {
         p = new Regla("Smart TV 32 HD Samsung J4300");
         p.setAntecedentes(new ArrayList<String>() {
             {
-                add("tv");
+                add("televisor");
                 add("smart");
                 add("samsung");
-                add("32");
+                add("32 pulgadas");
                 add("hd");
                 }
             }
@@ -60,10 +60,10 @@ class ReglasProductos {
         p = new Regla("Smart TV 32 HD TCL L32s6500");
         p.setAntecedentes(new ArrayList<String>() {
             {
-                add("tv");
+                add("televisor");
                 add("smart");
                 add("tcl");
-                add("32");
+                add("32 pulgadas");
                 add("hd");
                 }
             }
@@ -73,10 +73,10 @@ class ReglasProductos {
         p = new Regla("Smart TV 32 HD LG 32lj600b");
         p.setAntecedentes(new ArrayList<String>() {
             {
-                add("tv");
+                add("televisor");
                 add("smart");
                 add("lg");
-                add("32");
+                add("32 pulgadas");
                 add("hd");
                 }
             }
@@ -91,6 +91,19 @@ class ReglasProductos {
                 add("philips");
                 add("32");
                 add("hd");
+                }
+            }
+        );
+        lista.add(p);
+        
+        p = new Regla("Smart TV 40 Full HD Samsung Un40j5200");
+        p.setAntecedentes(new ArrayList<String>() {
+            {
+                add("televisor");
+                add("smart");
+                add("samsung");
+                add("mas de 32 pulgadas");
+                add("fullhd");
                 }
             }
         );

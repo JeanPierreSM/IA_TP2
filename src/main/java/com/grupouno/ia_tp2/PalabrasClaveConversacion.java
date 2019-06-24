@@ -44,5 +44,25 @@ class PalabrasClaveConversacion {
         listado.add("ssd");
         listado.add("microprocesador");
         listado.add("generacion");
+        
+        //Seccion Cliente - Televisor
+        listado.add("buscar");
+        listado.add("compar");
+        listado.add("necesitar");
+        listado.add("televisor");
+        listado.add("smart");
+        listado.add("marca");
+        listado.add("samsung");
+        listado.add("tcl");
+        listado.add("lg");
+        listado.add("philips");
+        listado.add("32");
+        listado.add("suficiente");
+        listado.add("hd");
+        listado.add("fullhd");
+        listado.add("4k");
+        listado.add("diez mil");
+        listado.add("veinte mil");
+        listado.add("importa");
     }
 }

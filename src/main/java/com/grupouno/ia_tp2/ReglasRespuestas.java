@@ -316,6 +316,192 @@ class ReglasRespuestas {
         regla17.setAntecedentes(antecedentes1);
         lista.add(regla17);
         
+        
+        
+        
+        
+        ArrayList<String> antecedentes10 = new ArrayList<String>();
+        antecedentes10.add("buscar");
+        antecedentes10.add("comprar");
+        antecedentes10.add("necesitar");
+        antecedentes10.add("televisor");
+        
+        ArrayList<String> antecedentes11 = (ArrayList<String>) antecedentes10.clone();
+        antecedentes11.add("smart");
+
+        
+        ArrayList<String> antecedentes12 = (ArrayList<String>) antecedentes11.clone();
+        antecedentes12.add("marca");
+        antecedentes12.add("samsung");
+        antecedentes12.add("lg");
+        antecedentes12.add("tcl");
+        antecedentes12.add("philips");
+        
+        ArrayList<String> antecedentes13 = (ArrayList<String>) antecedentes12.clone();
+        antecedentes13.add("32");
+        antecedentes13.add("suficiente");
+
+        
+        ArrayList<String> antecedentes14 = (ArrayList<String>) antecedentes13.clone();
+        antecedentes14.add("hd");
+        antecedentes14.add("fullhd");
+        antecedentes14.add("4k");
+        
+        ArrayList<String> antecedentes15 = (ArrayList<String>) antecedentes14.clone();
+        antecedentes15.add("diez mil");
+        antecedentes15.add("veinte mil");
+        antecedentes15.add("importa");
+        
+        PreguntaSiNo siNo18 = new PreguntaSiNo("¿Considera suficiente un televisor de 32 pulgadas?", Regla.Prioridad.BAJA);
+        siNo18.setAntecedentes(antecedentes15);
+        siNo18.setIfSi(new ArrayList<String>() {
+            {
+                add("32 pulgadas");
+            }
+        }
+        );
+        siNo18.setIfNo(new ArrayList<String>() {
+            {
+                add("mas de 32 pulgadas");
+            }
+        }
+        );
+        siNo18.setSiguientes(new ArrayList<Regla>() {
+            {
+                add(ultima);
+            }
+        }
+        );
+        lista.add(siNo18);
+        
+        PreguntaSiNo siNo19 = new PreguntaSiNo("¿Un televisor de 32 pulgadas le parece bien??", Regla.Prioridad.BAJA);
+        siNo19.setAntecedentes(antecedentes15);
+        siNo19.setIfSi(new ArrayList<String>() {
+            {
+                add("32 pulgadas");
+            }
+        }
+        );
+        siNo19.setIfNo(new ArrayList<String>() {
+            {
+                add("mas de 32 pulgadas");
+            }
+        }
+        );
+        siNo19.setSiguientes(new ArrayList<Regla>() {
+            {
+                add(ultima);
+            }
+        }
+        );
+        lista.add(siNo19);
+        
+        Regla regla20 = new Regla("¿Cuánto esta dispuesto a pagar?");
+        regla20.setAntecedentes(antecedentes14);
+        lista.add(regla20);
+        
+        Regla regla21 = new Regla("¿Cuál es su limite económico para gastar?");
+        regla21.setAntecedentes(antecedentes14);
+        lista.add(regla21);
+        
+        Regla regla22 = new Regla("¿Qué resolución de pantalla necesita?");
+        regla22.setAntecedentes(antecedentes13);
+        lista.add(regla22);
+        
+        Regla regla23 = new Regla("¿Quiere un televisor HD, Full HD o 4K?");
+        regla23.setAntecedentes(antecedentes13);
+        lista.add(regla23);
+        
+        PreguntaSiNo siNo24 = new PreguntaSiNo("¿Considera suficiente un televisor de 32 pulgadas?");
+        siNo24.setAntecedentes(antecedentes12);
+        siNo24.setIfSi(new ArrayList<String>() {
+            {
+                add("32 pulgadas");
+            }
+        }
+        );
+        siNo24.setIfNo(new ArrayList<String>() {
+            {
+                add("mas de 32 pulgadas");
+            }
+        }
+        );
+        siNo24.setSiguientes(new ArrayList<Regla>() {
+            {
+                add(regla22);
+                add(regla23);
+            }
+        }
+        );
+        lista.add(siNo24);
+        
+        PreguntaSiNo siNo25 = new PreguntaSiNo("¿Un televisor de 32 pulgadas le parece bien??");
+        siNo25.setAntecedentes(antecedentes12);
+        siNo25.setIfSi(new ArrayList<String>() {
+            {
+                add("32 pulgadas");
+            }
+        }
+        );
+        siNo25.setIfNo(new ArrayList<String>() {
+            {
+                add("mas de 32 pulgadas");
+            }
+        }
+        );
+        siNo25.setSiguientes(new ArrayList<Regla>() {
+            {
+                add(regla22);
+                add(regla23);
+            }
+        }
+        );
+        lista.add(siNo25);
+        
+        Regla regla26 = new Regla("¿Qué marca de televisor está buscando en particular?");
+        regla26.setAntecedentes(antecedentes11);
+        lista.add(regla26);
+        
+        Regla regla27 = new Regla("¿Necesita un televisor Samsung, LG, TCL, Philips?");
+        regla27.setAntecedentes(antecedentes11);
+        lista.add(regla27);
+        
+        PreguntaSiNo siNo28 = new PreguntaSiNo("¿Necesita un televisor Smart?", Regla.Prioridad.ALTA);
+        siNo28.setAntecedentes(antecedentes10);
+        siNo28.setIfSi(new ArrayList<String>() {
+            {
+                add("smart");
+            }
+        }
+        );
+        siNo28.setSiguientes(new ArrayList<Regla>() {
+            {
+                add(regla26);
+                add(regla27);
+            }
+        }
+        );
+        lista.add(siNo28);
+        
+        PreguntaSiNo siNo29 = new PreguntaSiNo("¿Quiere un televisor Smart?", Regla.Prioridad.ALTA);
+        siNo29.setAntecedentes(antecedentes10);
+        siNo29.setIfSi(new ArrayList<String>() {
+            {
+                add("smart");
+            }
+        }
+        );
+        siNo29.setSiguientes(new ArrayList<Regla>() {
+            {
+                add(regla26);
+                add(regla27);
+            }
+        }
+        );
+        lista.add(siNo29);
+        
+        
+        
         this.genericas = new ArrayList<>();
         Regla gen = new Regla("Perfecto!");
         genericas.add(gen);

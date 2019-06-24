@@ -50,6 +50,7 @@ public class ProcesadorTokens {
         sinonimos.put("computadora", "notebook");
         sinonimos.put("microprocesador", "microprocesador potente");
         sinonimos.put("ultimo", "reciente");
+        sinonimos.put("tv", "televisor");
     }
 
     boolean esPalabraClaveProducto(String token) {
